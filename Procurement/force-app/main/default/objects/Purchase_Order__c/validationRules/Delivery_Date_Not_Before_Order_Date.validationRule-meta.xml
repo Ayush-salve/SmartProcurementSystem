@@ -4,6 +4,6 @@
     <active>true</active>
     <description>Expected Delivery Date cannot be earlier than the Order Date on a Purchase Order.</description>
     <errorConditionFormula>AND(NOT(ISBLANK(Expected_Delivery_Date__c)), NOT(ISBLANK(Order_Date__c)), Expected_Delivery_Date__c &lt; Order_Date__c)</errorConditionFormula>
-    <errorMessage>Expected Delivery Date cannot be earlier than the Order Date.</errorMessage>
+    <errorMessage>Expaced Delivery Date cannot be earlier than the Order Date.</errorMessage>
     <errorDisplayField>Expected_Delivery_Date__c</errorDisplayField>
 </ValidationRule>
