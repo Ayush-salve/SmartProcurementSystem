@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source_Order_Line__c</fullName>
+    <label>Source Order Line</label>
+    <type>Lookup</type>
+    <referenceTo>Purchase_Order_Line__c</referenceTo>
+    <relationshipLabel>Source Order Inventory Transactions</relationshipLabel>
+    <relationshipName>Source_Order_Inventory_Transactions</relationshipName>
+    <required>false</required>
+    <description>Optional link to the purchase order line that originated an Issue or reservation-type transaction.</description>
+</CustomField>

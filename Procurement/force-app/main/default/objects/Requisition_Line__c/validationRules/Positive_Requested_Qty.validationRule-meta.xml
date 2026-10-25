@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Positive_Requested_Qty</fullName>
+    <active>true</active>
+    <description>Requested Quantity must be greater than zero on a Requisition Line.</description>
+    <errorConditionFormula>BLANKVALUE(Requested_Qty__c, 0) &lt;= 0</errorConditionFormula>
+    <errorMessage>Requested Quantity must be greater than zero.</errorMessage>
+    <errorDisplayField>Requested_Qty__c</errorDisplayField>
+</ValidationRule>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reorder_Point__c</fullName>
+    <label>Reorder Point</label>
+    <type>Number</type>
+    <precision>18</precision>
+    <scale>2</scale>
+    <required>false</required>
+    <description>Stock level at which a replenishment order should be triggered. When Available Stock falls below this threshold, the Reorder Status should be updated.</description>
+</CustomField>

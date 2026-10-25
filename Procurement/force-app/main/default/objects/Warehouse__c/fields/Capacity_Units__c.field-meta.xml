@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Capacity_Units__c</fullName>
+    <label>Capacity (Units)</label>
+    <type>Number</type>
+    <precision>18</precision>
+    <scale>0</scale>
+    <required>false</required>
+    <description>Maximum storage capacity expressed in units (e.g., pallets, SKU slots). Optional; used for capacity planning.</description>
+</CustomField>

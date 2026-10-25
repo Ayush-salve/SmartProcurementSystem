@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Warehouse__c</fullName>
+    <label>Warehouse</label>
+    <type>Lookup</type>
+    <referenceTo>Warehouse__c</referenceTo>
+    <relationshipLabel>Goods Receipts</relationshipLabel>
+    <relationshipName>Goods_Receipts_Warehouse</relationshipName>
+    <required>false</required>
+    <description>The warehouse where delivered goods were received and inspected.</description>
+</CustomField>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Negative_Approved_Unit_Price</fullName>
+    <active>true</active>
+    <description>Approved Unit Price cannot be negative on a Requisition Line.</description>
+    <errorConditionFormula>AND(NOT(ISBLANK(Approved_Unit_Price__c)), Approved_Unit_Price__c &lt; 0)</errorConditionFormula>
+    <errorMessage>Approved Unit Price cannot be negative.</errorMessage>
+    <errorDisplayField>Approved_Unit_Price__c</errorDisplayField>
+</ValidationRule>

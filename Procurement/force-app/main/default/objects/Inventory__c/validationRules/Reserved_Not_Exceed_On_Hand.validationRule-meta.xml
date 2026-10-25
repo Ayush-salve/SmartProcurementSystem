@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reserved_Not_Exceed_On_Hand</fullName>
+    <active>true</active>
+    <description>Prevents Reserved quantity from exceeding On Hand quantity. Authorized stock corrections must be applied via Inventory Transaction records (Adjustment or Reversal) rather than direct field edits.</description>
+    <errorConditionFormula>AND(NOT(ISBLANK(Reserved__c)), NOT(ISBLANK(On_Hand__c)), Reserved__c &gt; On_Hand__c)</errorConditionFormula>
+    <errorMessage>Reserved quantity cannot exceed On Hand quantity. Use an Inventory Transaction to record authorized stock adjustments.</errorMessage>
+    <errorDisplayField>Reserved__c</errorDisplayField>
+</ValidationRule>

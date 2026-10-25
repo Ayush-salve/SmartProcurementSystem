@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quantity_Before__c</fullName>
+    <label>Quantity Before</label>
+    <type>Number</type>
+    <precision>18</precision>
+    <scale>2</scale>
+    <required>false</required>
+    <description>On-hand quantity on the Inventory record immediately before this transaction was applied. Captured at write time for audit trail integrity.</description>
+</CustomField>

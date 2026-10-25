@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Valid_Until__c</fullName>
+    <label>Valid Until</label>
+    <type>Date</type>
+    <required>false</required>
+    <description>Expiry date of the quoted price. After this date the price should be reverified before use on a new order.</description>
+</CustomField>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approved_Unit_Price__c</fullName>
+    <label>Approved Unit Price</label>
+    <type>Currency</type>
+    <precision>16</precision>
+    <scale>2</scale>
+    <required>false</required>
+    <description>Unit price confirmed during the approval process, used to calculate the Approved Line Total.</description>
+</CustomField>

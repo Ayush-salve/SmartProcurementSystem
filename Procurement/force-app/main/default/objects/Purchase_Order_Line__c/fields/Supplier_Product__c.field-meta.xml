@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Supplier_Product__c</fullName>
+    <label>Supplier Product</label>
+    <type>Lookup</type>
+    <referenceTo>Supplier_Product__c</referenceTo>
+    <relationshipLabel>Purchase Order Lines</relationshipLabel>
+    <relationshipName>Purchase_Order_Lines_Supplier</relationshipName>
+    <required>false</required>
+    <description>Supplier offering used for this line, carrying the agreed unit price and lead time.</description>
+</CustomField>

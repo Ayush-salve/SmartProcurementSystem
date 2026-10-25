@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Negative_Safety_Stock</fullName>
+    <active>true</active>
+    <description>Prevents saving an Inventory record with a negative Safety Stock quantity.</description>
+    <errorConditionFormula>Safety_Stock__c &lt; 0</errorConditionFormula>
+    <errorMessage>Safety Stock cannot be negative.</errorMessage>
+    <errorDisplayField>Safety_Stock__c</errorDisplayField>
+</ValidationRule>

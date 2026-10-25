@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quantity_Delivered__c</fullName>
+    <label>Quantity Delivered</label>
+    <type>Number</type>
+    <precision>18</precision>
+    <scale>2</scale>
+    <required>false</required>
+    <description>Total quantity physically delivered by the supplier for this line. Must be non-negative (validated).</description>
+</CustomField>

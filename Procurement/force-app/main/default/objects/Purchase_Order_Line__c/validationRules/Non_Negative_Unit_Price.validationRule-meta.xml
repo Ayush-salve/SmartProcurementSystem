@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Negative_Unit_Price</fullName>
+    <active>true</active>
+    <description>Unit Price cannot be negative on a Purchase Order Line.</description>
+    <errorConditionFormula>AND(NOT(ISBLANK(Unit_Price__c)), Unit_Price__c &lt; 0)</errorConditionFormula>
+    <errorMessage>Unit Price cannot be negative.</errorMessage>
+    <errorDisplayField>Unit_Price__c</errorDisplayField>
+</ValidationRule>

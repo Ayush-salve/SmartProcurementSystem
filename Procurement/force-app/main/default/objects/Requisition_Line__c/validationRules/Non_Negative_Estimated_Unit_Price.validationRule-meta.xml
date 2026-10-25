@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Negative_Estimated_Unit_Price</fullName>
+    <active>true</active>
+    <description>Estimated Unit Price cannot be negative on a Requisition Line.</description>
+    <errorConditionFormula>AND(NOT(ISBLANK(Estimated_Unit_Price__c)), Estimated_Unit_Price__c &lt; 0)</errorConditionFormula>
+    <errorMessage>Estimated Unit Price cannot be negative.</errorMessage>
+    <errorDisplayField>Estimated_Unit_Price__c</errorDisplayField>
+</ValidationRule>

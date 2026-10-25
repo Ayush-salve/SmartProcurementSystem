@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Quote_Date__c</fullName>
+    <label>Last Quote Date</label>
+    <type>Date</type>
+    <required>false</required>
+    <description>Date on which the Unit Price was last confirmed or quoted by the supplier.</description>
+</CustomField>

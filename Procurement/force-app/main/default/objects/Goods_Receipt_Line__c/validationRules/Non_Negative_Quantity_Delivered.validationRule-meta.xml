@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Negative_Quantity_Delivered</fullName>
+    <active>true</active>
+    <description>Prevents saving a Goods Receipt Line with a negative Quantity Delivered.</description>
+    <errorConditionFormula>Quantity_Delivered__c &lt; 0</errorConditionFormula>
+    <errorMessage>Quantity Delivered cannot be negative.</errorMessage>
+    <errorDisplayField>Quantity_Delivered__c</errorDisplayField>
+</ValidationRule>

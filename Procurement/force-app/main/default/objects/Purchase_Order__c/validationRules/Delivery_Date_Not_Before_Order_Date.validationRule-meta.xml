@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Delivery_Date_Not_Before_Order_Date</fullName>
+    <active>true</active>
+    <description>Expected Delivery Date cannot be earlier than the Order Date on a Purchase Order.</description>
+    <errorConditionFormula>AND(NOT(ISBLANK(Expected_Delivery_Date__c)), NOT(ISBLANK(Order_Date__c)), Expected_Delivery_Date__c &lt; Order_Date__c)</errorConditionFormula>
+    <errorMessage>Expected Delivery Date cannot be earlier than the Order Date.</errorMessage>
+    <errorDisplayField>Expected_Delivery_Date__c</errorDisplayField>
+</ValidationRule>

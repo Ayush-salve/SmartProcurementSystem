@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Negative_Lead_Time_Days</fullName>
+    <active>true</active>
+    <description>Prevents saving an Inventory record with a negative Lead Time (Days).</description>
+    <errorConditionFormula>Lead_Time_Days__c &lt; 0</errorConditionFormula>
+    <errorMessage>Lead Time (Days) cannot be negative.</errorMessage>
+    <errorDisplayField>Lead_Time_Days__c</errorDisplayField>
+</ValidationRule>

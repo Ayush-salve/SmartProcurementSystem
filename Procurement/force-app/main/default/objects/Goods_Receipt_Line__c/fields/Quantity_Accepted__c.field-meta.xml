@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quantity_Accepted__c</fullName>
+    <label>Quantity Accepted</label>
+    <type>Number</type>
+    <precision>18</precision>
+    <scale>2</scale>
+    <required>false</required>
+    <description>Quantity that passed inspection and will be added to usable stock. Must be non-negative, and together with Quantity Rejected must not exceed Quantity Delivered (validated).</description>
+</CustomField>

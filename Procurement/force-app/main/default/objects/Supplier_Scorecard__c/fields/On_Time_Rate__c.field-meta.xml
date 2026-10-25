@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>On_Time_Rate__c</fullName>
+    <label>On-Time Rate</label>
+    <type>Percent</type>
+    <precision>5</precision>
+    <scale>2</scale>
+    <required>false</required>
+    <description>Percentage of orders delivered on or before the agreed delivery date during this period.</description>
+</CustomField>

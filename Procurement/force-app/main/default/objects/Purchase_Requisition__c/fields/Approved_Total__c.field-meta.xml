@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approved_Total__c</fullName>
+    <label>Approved Total</label>
+    <type>Currency</type>
+    <precision>16</precision>
+    <scale>2</scale>
+    <required>false</required>
+    <description>Total approved spend across all requisition lines after review. Populated by a future roll-up summary or authoritative Flow/Apex calculation; not a formula field to preserve strategy flexibility.</description>
+</CustomField>

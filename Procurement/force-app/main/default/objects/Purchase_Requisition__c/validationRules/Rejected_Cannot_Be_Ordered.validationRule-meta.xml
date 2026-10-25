@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rejected_Cannot_Be_Ordered</fullName>
+    <active>true</active>
+    <description>A Rejected or Cancelled Purchase Requisition cannot be transitioned directly to Ordered or Partially Ordered status.</description>
+    <errorConditionFormula>AND(
+    OR(ISPICKVAL(Status__c, "Ordered"), ISPICKVAL(Status__c, "Partially Ordered")),
+    OR(ISPICKVAL(PRIORVALUE(Status__c), "Rejected"), ISPICKVAL(PRIORVALUE(Status__c), "Cancelled"))
+)</errorConditionFormula>
+    <errorMessage>A Rejected or Cancelled Requisition cannot be moved to Ordered or Partially Ordered status. Please raise a new Requisition.</errorMessage>
+    <errorDisplayField>Status__c</errorDisplayField>
+</ValidationRule>

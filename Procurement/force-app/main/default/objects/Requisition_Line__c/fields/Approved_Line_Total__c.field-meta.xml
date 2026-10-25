@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approved_Line_Total__c</fullName>
+    <label>Approved Line Total</label>
+    <type>Currency</type>
+    <formula>Approved_Qty__c * Approved_Unit_Price__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <precision>18</precision>
+    <scale>2</scale>
+    <description>Calculated approved spend for this line: Approved Quantity multiplied by Approved Unit Price.</description>
+</CustomField>

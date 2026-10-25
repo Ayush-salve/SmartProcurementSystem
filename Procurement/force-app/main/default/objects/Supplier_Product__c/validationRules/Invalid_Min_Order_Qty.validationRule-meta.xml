@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Invalid_Min_Order_Qty</fullName>
+    <active>true</active>
+    <description>Prevents saving a Supplier Product where Minimum Order Quantity is populated but not greater than zero.</description>
+    <errorConditionFormula>AND(NOT(ISBLANK(Minimum_Order_Qty__c)), Minimum_Order_Qty__c &lt;= 0)</errorConditionFormula>
+    <errorMessage>Minimum Order Quantity must be greater than zero.</errorMessage>
+    <errorDisplayField>Minimum_Order_Qty__c</errorDisplayField>
+</ValidationRule>

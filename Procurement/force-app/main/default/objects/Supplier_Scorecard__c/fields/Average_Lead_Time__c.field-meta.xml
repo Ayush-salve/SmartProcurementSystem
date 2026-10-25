@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Average_Lead_Time__c</fullName>
+    <label>Average Lead Time (Days)</label>
+    <type>Number</type>
+    <precision>18</precision>
+    <scale>2</scale>
+    <required>false</required>
+    <description>Average calendar days from order placement to delivery across all evaluated orders during this period.</description>
+</CustomField>

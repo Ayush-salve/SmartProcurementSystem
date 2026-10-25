@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product__c</fullName>
+    <label>Product</label>
+    <type>Lookup</type>
+    <referenceTo>Product2</referenceTo>
+    <relationshipLabel>Inventory Records</relationshipLabel>
+    <relationshipName>Inventory_Records</relationshipName>
+    <required>false</required>
+    <description>The product whose stock level this inventory record tracks.</description>
+</CustomField>

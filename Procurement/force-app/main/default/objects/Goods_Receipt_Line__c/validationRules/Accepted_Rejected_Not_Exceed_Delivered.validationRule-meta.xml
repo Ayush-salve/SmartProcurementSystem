@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accepted_Rejected_Not_Exceed_Delivered</fullName>
+    <active>true</active>
+    <description>Prevents saving a Goods Receipt Line where the sum of Accepted and Rejected quantities exceeds the Delivered quantity.</description>
+    <errorConditionFormula>BLANKVALUE(Quantity_Accepted__c, 0) + BLANKVALUE(Quantity_Rejected__c, 0) &gt; BLANKVALUE(Quantity_Delivered__c, 0)</errorConditionFormula>
+    <errorMessage>Accepted and Rejected quantities combined cannot exceed Quantity Delivered.</errorMessage>
+</ValidationRule>

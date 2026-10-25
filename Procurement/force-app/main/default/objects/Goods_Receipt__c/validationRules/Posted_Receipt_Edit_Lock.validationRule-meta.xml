@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Posted_Receipt_Edit_Lock</fullName>
+    <active>true</active>
+    <description>Prevents editing a Goods Receipt once it has been Posted. Posted receipts are accounting-period records and must remain immutable.</description>
+    <errorConditionFormula>AND(ISPICKVAL(PRIORVALUE(Status__c), "Posted"), NOT(ISNEW()))</errorConditionFormula>
+    <errorMessage>A Posted Goods Receipt cannot be edited. To make corrections, create a new Goods Receipt with the correct quantities.</errorMessage>
+</ValidationRule>

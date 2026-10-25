@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quality_Rating__c</fullName>
+    <label>Quality Rating</label>
+    <type>Number</type>
+    <precision>3</precision>
+    <scale>1</scale>
+    <required>false</required>
+    <description>Quality score for this supplier-product on a scale of 1 (poor) to 5 (excellent). Must be between 1 and 5 when populated (validated).</description>
+    <inlineHelpText>Rate product quality from 1 (poor) to 5 (excellent).</inlineHelpText>
+</CustomField>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Goods Receipt</label>
+    <pluralLabel>Goods Receipts</pluralLabel>
+    <sharingModel>ReadWrite</sharingModel>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <visibility>Public</visibility>
+    <description>The Goods Receipt object records deliveries at a warehouse against a purchase order. It captures receipt date, delivery reference, and status from Draft to Posted. External Receipt Key (unique) prevents duplicate receipts; posted records must be edit-locked by later automation. Commonly used for inventory updates and invoice matching.</description>
+    <nameField>
+        <label>Goods Receipt Number</label>
+        <type>AutoNumber</type>
+        <displayFormat>GR-{00000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <enableSearch>true</enableSearch>
+    <enableReports>true</enableReports>
+    <enableActivities>true</enableActivities>
+    <enableHistory>true</enableHistory>
+</CustomObject>

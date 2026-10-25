@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Estimated_Unit_Price__c</fullName>
+    <label>Estimated Unit Price</label>
+    <type>Currency</type>
+    <precision>16</precision>
+    <scale>2</scale>
+    <required>false</required>
+    <description>Estimated price per unit at the time of request, used to calculate the Estimated Line Total.</description>
+</CustomField>

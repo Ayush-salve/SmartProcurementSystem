@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quantity_Change__c</fullName>
+    <label>Quantity Change</label>
+    <type>Number</type>
+    <precision>18</precision>
+    <scale>2</scale>
+    <required>false</required>
+    <description>Signed quantity delta applied to the inventory record. Positive values increase stock (e.g., Receipt); negative values decrease it (e.g., Issue, Transfer Out).</description>
+</CustomField>

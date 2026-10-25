@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reorder_Status__c</fullName>
+    <label>Reorder Status</label>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Healthy</fullName>
+                <default>true</default>
+                <label>Healthy</label>
+            </value>
+            <value>
+                <fullName>At Risk</fullName>
+                <default>false</default>
+                <label>At Risk</label>
+            </value>
+            <value>
+                <fullName>Reorder Needed</fullName>
+                <default>false</default>
+                <label>Reorder Needed</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <description>Current replenishment health of this inventory record. Set by the reorder run process.</description>
+</CustomField>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Negative_Reserved</fullName>
+    <active>true</active>
+    <description>Prevents saving an Inventory record with a negative Reserved quantity.</description>
+    <errorConditionFormula>Reserved__c &lt; 0</errorConditionFormula>
+    <errorMessage>Reserved quantity cannot be negative.</errorMessage>
+    <errorDisplayField>Reserved__c</errorDisplayField>
+</ValidationRule>

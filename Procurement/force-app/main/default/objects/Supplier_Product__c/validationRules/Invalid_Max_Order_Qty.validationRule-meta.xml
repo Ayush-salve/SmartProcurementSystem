@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Invalid_Max_Order_Qty</fullName>
+    <active>true</active>
+    <description>Prevents saving a Supplier Product where Maximum Order Quantity is less than Minimum Order Quantity when both are populated.</description>
+    <errorConditionFormula>AND(NOT(ISBLANK(Maximum_Order_Qty__c)), NOT(ISBLANK(Minimum_Order_Qty__c)), Maximum_Order_Qty__c &lt; Minimum_Order_Qty__c)</errorConditionFormula>
+    <errorMessage>Maximum Order Quantity must be greater than or equal to Minimum Order Quantity.</errorMessage>
+    <errorDisplayField>Maximum_Order_Qty__c</errorDisplayField>
+</ValidationRule>

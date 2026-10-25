@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Purchase Order Line</label>
+    <pluralLabel>Purchase Order Lines</pluralLabel>
+    <sharingModel>ControlledByParent</sharingModel>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <visibility>Public</visibility>
+    <description>The Purchase Order Line object stores individual product lines on a purchase order as a child record. It captures ordered, received, and rejected quantities and unit price; Line Total auto-calculates. Supplier Product links price and delivery terms. Line Status tracks fulfilment per line. Commonly used for goods receipt matching.</description>
+    <nameField>
+        <label>Purchase Order Line Number</label>
+        <type>AutoNumber</type>
+        <displayFormat>POL-{00000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <enableSearch>true</enableSearch>
+    <enableReports>true</enableReports>
+</CustomObject>

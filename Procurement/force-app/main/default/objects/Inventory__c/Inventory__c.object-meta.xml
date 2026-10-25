@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Inventory</label>
+    <pluralLabel>Inventories</pluralLabel>
+    <sharingModel>ReadWrite</sharingModel>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <visibility>Public</visibility>
+    <description>The Inventory object tracks current stock levels for each product in each warehouse. It records on-hand, reserved, and on-order quantities; safety stock and reorder thresholds; and Available Stock (calculated as on-hand minus reserved). Reorder Status flags are set per reorder run. Commonly used for stock visibility and replenishment planning.</description>
+    <nameField>
+        <label>Inventory Number</label>
+        <type>AutoNumber</type>
+        <displayFormat>INV-{00000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <enableSearch>true</enableSearch>
+    <enableReports>true</enableReports>
+    <enableActivities>true</enableActivities>
+    <enableHistory>true</enableHistory>
+</CustomObject>

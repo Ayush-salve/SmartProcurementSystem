@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Purchase Requisition</label>
+    <pluralLabel>Purchase Requisitions</pluralLabel>
+    <sharingModel>ReadWrite</sharingModel>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <visibility>Public</visibility>
+    <description>The Purchase Requisition object captures internal requests to procure products. It records the requester, destination warehouse, priority, and status through a lifecycle from Draft to Ordered. Estimated and approved totals support budget review. Idempotency Key (unique) prevents duplicate submissions. Commonly used for purchase approval workflows and spend tracking.</description>
+    <nameField>
+        <label>Requisition Number</label>
+        <type>AutoNumber</type>
+        <displayFormat>PR-{00000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <enableSearch>true</enableSearch>
+    <enableReports>true</enableReports>
+    <enableActivities>true</enableActivities>
+    <enableHistory>true</enableHistory>
+</CustomObject>

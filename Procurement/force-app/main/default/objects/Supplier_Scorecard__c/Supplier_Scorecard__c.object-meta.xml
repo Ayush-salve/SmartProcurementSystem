@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Supplier Scorecard</label>
+    <pluralLabel>Supplier Scorecards</pluralLabel>
+    <sharingModel>ReadWrite</sharingModel>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <visibility>Public</visibility>
+    <description>The Supplier Scorecard object retains period-level performance measurements for each supplier. It records on-time rate, defect rate, average lead time, and composite scores; overall score drives the Risk Level classification. Separate records preserve historical scorecards. Calculation Version and timestamp trace which scoring algorithm produced each record.</description>
+    <nameField>
+        <label>Scorecard Number</label>
+        <type>AutoNumber</type>
+        <displayFormat>SC-{00000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <enableSearch>true</enableSearch>
+    <enableReports>true</enableReports>
+    <enableActivities>true</enableActivities>
+    <enableHistory>true</enableHistory>
+</CustomObject>

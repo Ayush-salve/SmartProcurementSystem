@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Purchase Order</label>
+    <pluralLabel>Purchase Orders</pluralLabel>
+    <sharingModel>ReadWrite</sharingModel>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <visibility>Public</visibility>
+    <description>The Purchase Order object records formal procurement commitments sent to suppliers. It links to an optional purchase requisition, supplier, and destination warehouse, and tracks status from Draft through Received. Total Amount is calculated as subtotal plus tax plus shipping. External Order ID and Idempotency Key support integration scenarios.</description>
+    <nameField>
+        <label>Purchase Order Number</label>
+        <type>AutoNumber</type>
+        <displayFormat>PO-{00000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <enableSearch>true</enableSearch>
+    <enableReports>true</enableReports>
+    <enableActivities>true</enableActivities>
+    <enableHistory>true</enableHistory>
+</CustomObject>

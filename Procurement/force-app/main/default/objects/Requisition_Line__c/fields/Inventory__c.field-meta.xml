@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inventory__c</fullName>
+    <label>Inventory</label>
+    <type>Lookup</type>
+    <referenceTo>Inventory__c</referenceTo>
+    <relationshipLabel>Requisition Lines</relationshipLabel>
+    <relationshipName>Requisition_Lines_Inventory</relationshipName>
+    <required>false</required>
+    <description>Optional link to the inventory record that triggered or will be replenished by this line.</description>
+</CustomField>

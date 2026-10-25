@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Negative_On_Order</fullName>
+    <active>true</active>
+    <description>Prevents saving an Inventory record with a negative On Order quantity.</description>
+    <errorConditionFormula>On_Order__c &lt; 0</errorConditionFormula>
+    <errorMessage>On Order quantity cannot be negative.</errorMessage>
+    <errorDisplayField>On_Order__c</errorDisplayField>
+</ValidationRule>

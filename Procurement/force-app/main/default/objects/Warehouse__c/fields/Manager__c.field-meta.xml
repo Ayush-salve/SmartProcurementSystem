@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Manager__c</fullName>
+    <label>Manager</label>
+    <type>Lookup</type>
+    <referenceTo>User</referenceTo>
+    <relationshipLabel>Managed Warehouses</relationshipLabel>
+    <relationshipName>Managed_Warehouses</relationshipName>
+    <required>false</required>
+    <description>The Salesforce user responsible for managing this warehouse.</description>
+</CustomField>

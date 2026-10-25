@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Preferred_Supplier_Product__c</fullName>
+    <label>Preferred Supplier Product</label>
+    <type>Lookup</type>
+    <referenceTo>Supplier_Product__c</referenceTo>
+    <relationshipLabel>Preferred Requisition Lines</relationshipLabel>
+    <relationshipName>Preferred_Requisition_Lines</relationshipName>
+    <required>false</required>
+    <description>Preferred supplier offering for this line. Used to pre-populate pricing and lead time on the resulting purchase order line.</description>
+</CustomField>

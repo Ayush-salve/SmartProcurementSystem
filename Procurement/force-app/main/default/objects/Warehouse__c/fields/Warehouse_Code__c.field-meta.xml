@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Warehouse_Code__c</fullName>
+    <label>Warehouse Code</label>
+    <type>Text</type>
+    <length>100</length>
+    <unique>true</unique>
+    <caseSensitive>false</caseSensitive>
+    <required>false</required>
+    <description>Unique short code identifying this warehouse (e.g., WH-001). Used in reports and integrations.</description>
+</CustomField>

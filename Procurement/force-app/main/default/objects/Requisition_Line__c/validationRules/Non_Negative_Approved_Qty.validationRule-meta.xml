@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Negative_Approved_Qty</fullName>
+    <active>true</active>
+    <description>Approved Quantity cannot be negative on a Requisition Line.</description>
+    <errorConditionFormula>AND(NOT(ISBLANK(Approved_Qty__c)), Approved_Qty__c &lt; 0)</errorConditionFormula>
+    <errorMessage>Approved Quantity cannot be negative.</errorMessage>
+    <errorDisplayField>Approved_Qty__c</errorDisplayField>
+</ValidationRule>

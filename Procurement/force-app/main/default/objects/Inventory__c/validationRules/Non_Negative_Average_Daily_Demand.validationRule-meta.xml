@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Negative_Average_Daily_Demand</fullName>
+    <active>true</active>
+    <description>Prevents saving an Inventory record with a negative Average Daily Demand.</description>
+    <errorConditionFormula>Average_Daily_Demand__c &lt; 0</errorConditionFormula>
+    <errorMessage>Average Daily Demand cannot be negative.</errorMessage>
+    <errorDisplayField>Average_Daily_Demand__c</errorDisplayField>
+</ValidationRule>

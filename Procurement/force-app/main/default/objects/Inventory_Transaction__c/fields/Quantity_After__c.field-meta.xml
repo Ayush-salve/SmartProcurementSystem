@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quantity_After__c</fullName>
+    <label>Quantity After</label>
+    <type>Number</type>
+    <precision>18</precision>
+    <scale>2</scale>
+    <required>false</required>
+    <description>On-hand quantity on the Inventory record immediately after this transaction was applied. Should equal Quantity Before plus Quantity Change.</description>
+</CustomField>

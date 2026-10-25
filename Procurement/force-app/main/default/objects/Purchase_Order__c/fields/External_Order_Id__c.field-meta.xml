@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>External_Order_Id__c</fullName>
+    <label>External Order ID</label>
+    <type>Text</type>
+    <length>255</length>
+    <externalId>true</externalId>
+    <unique>true</unique>
+    <caseSensitive>true</caseSensitive>
+    <required>false</required>
+    <description>Order identifier assigned by the external procurement or ERP system. Used as an External ID for upsert operations during integration.</description>
+</CustomField>

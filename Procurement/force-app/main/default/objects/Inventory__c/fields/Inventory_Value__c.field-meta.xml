@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inventory_Value__c</fullName>
+    <label>Inventory Value</label>
+    <type>Currency</type>
+    <precision>16</precision>
+    <scale>2</scale>
+    <required>false</required>
+    <description>Estimated monetary value of stock on hand. DEFERRED: This field is a plain Currency field pending agreement on a unit-cost source (e.g., Product2.UnitPrice, weighted average, or last-purchase price). Convert to a Formula(Currency) field once the valuation strategy is confirmed.</description>
+</CustomField>

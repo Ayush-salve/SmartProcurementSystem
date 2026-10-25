@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Supplier_SKU__c</fullName>
+    <label>Supplier SKU</label>
+    <type>Text</type>
+    <length>255</length>
+    <required>false</required>
+    <description>Supplier's own part number or SKU for this product. Used on purchase orders sent to the supplier.</description>
+</CustomField>
