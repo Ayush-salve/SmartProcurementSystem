@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Level 3 - Finance Approval</label>
+    <protected>false</protected>
+    <values>
+        <field>Min_Amount__c</field>
+        <value xsi:type="xsd:double">100001.0</value>
+    </values>
+    <values>
+        <field>Max_Amount__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Approver_Role__c</field>
+        <value xsi:type="xsd:string">Finance</value>
+    </values>
+    <values>
+        <field>Approval_Level__c</field>
+        <value xsi:type="xsd:double">3.0</value>
+    </values>
+</CustomMetadata>

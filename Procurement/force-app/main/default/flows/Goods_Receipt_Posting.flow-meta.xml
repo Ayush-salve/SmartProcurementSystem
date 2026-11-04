@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>68.0</apiVersion>
+    <description>Autolaunched flow that invokes the GoodsReceiptService to post a receipt and update inventory. Call from a button or parent flow.</description>
+    <environments>Default</environments>
+    <interviewLabel>Goods Receipt Posting {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Goods Receipt Posting</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>176</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Post_Goods_Receipt</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>receiptId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <description>The Id of the Goods Receipt to post.</description>
+    </variables>
+    <variables>
+        <name>errorMessage</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <actionCalls>
+        <name>Post_Goods_Receipt</name>
+        <label>Post Goods Receipt</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <actionName>GoodsReceiptService</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Receipt_Posted_Successfully</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Handle_Post_Error</targetReference>
+        </faultConnector>
+        <inputParameters>
+            <name>receiptId</name>
+            <value>
+                <elementReference>receiptId</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <name>Receipt_Posted_Successfully</name>
+        <label>Receipt Posted Successfully</label>
+        <locationX>176</locationX>
+        <locationY>278</locationY>
+        <assignmentItems>
+            <assignToReference>errorMessage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Handle_Post_Error</name>
+        <label>Handle Post Error</label>
+        <locationX>352</locationX>
+        <locationY>278</locationY>
+        <assignmentItems>
+            <assignToReference>errorMessage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+</Flow>

@@ -1,0 +1,95 @@
+<template>
+    <lightning-card title="Procurement Assistant" icon-name="utility:einstein">
+        <div slot="actions">
+            <template if:true={isConfigured}>
+                <lightning-button label="Refresh" icon-name="utility:refresh" onclick={handleRefresh}></lightning-button>
+            </template>
+        </div>
+        <div class="slds-var-m-around_medium">
+            <!-- Not Configured State -->
+            <template if:false={isConfigured}>
+                <div class="slds-illustration slds-illustration_small slds-var-m-around_medium">
+                    <div class="slds-text-longform slds-text-align_center">
+                        <lightning-icon icon-name="utility:einstein" size="large" class="slds-var-m-bottom_medium"></lightning-icon>
+                        <h3 class="slds-text-heading_medium">Procurement Assistant Not Configured</h3>
+                        <p class="slds-text-body_regular slds-var-m-top_small">
+                            AI-powered procurement recommendations require Agentforce to be configured in your org.
+                        </p>
+                        <p class="slds-text-body_regular slds-var-m-top_small">
+                            <strong>Current capability:</strong> Rule-based recommendations from your live inventory and supplier data are available below.
+                        </p>
+                        <p class="slds-text-body_small slds-var-m-top_small slds-text-color_weak">
+                            To enable Agentforce: Setup → Einstein → Agentforce → Enable
+                        </p>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Tabs: Reorder / Supplier Recs -->
+            <lightning-tabset variant="scoped">
+                <lightning-tab label="Reorder Recommendations" icon-name="utility:package">
+                    <div class="slds-var-m-around_small">
+                        <template if:true={isLoadingReorder}>
+                            <lightning-spinner alternative-text="Loading..." size="small"></lightning-spinner>
+                        </template>
+                        <template if:true={reorderError}>
+                            <div class="slds-notify slds-notify_alert slds-alert_error" role="alert"><p>{reorderError}</p></div>
+                        </template>
+                        <template if:true={hasReorderRecs}>
+                            <template for:each={reorderRecs} for:item="rec">
+                                <div key={rec.relatedRecordId} class="slds-box slds-var-m-bottom_small" style={rec.cardStyle}>
+                                    <div class="slds-grid slds-wrap">
+                                        <div class="slds-col slds-size_9-of-12">
+                                            <p class="slds-text-heading_small">{rec.title}</p>
+                                            <p class="slds-text-body_small slds-var-m-top_xx-small">{rec.description}</p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-12 slds-text-align_right">
+                                            <lightning-badge label={rec.urgency}></lightning-badge>
+                                            <div class="slds-var-m-top_x-small">
+                                                <lightning-button variant="neutral" label="View" data-id={rec.relatedRecordId} onclick={handleViewRecord} size="small"></lightning-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </template>
+                        <template if:true={reorderEmpty}>
+                            <div class="slds-text-align_center slds-var-m-around_medium">
+                                <lightning-icon icon-name="utility:check" size="medium"></lightning-icon>
+                                <p class="slds-var-m-top_small slds-text-color_success">All inventory levels are healthy. No reorders needed.</p>
+                            </div>
+                        </template>
+                    </div>
+                </lightning-tab>
+
+                <lightning-tab label="Supplier Recommendations" icon-name="utility:account">
+                    <div class="slds-var-m-around_small">
+                        <div class="slds-grid slds-gutters slds-var-m-bottom_small">
+                            <div class="slds-col">
+                                <lightning-record-picker label="Product" object-api-name="Product2" value={selectedProductId} placeholder="Select a product..." onchange={handleProductChange}></lightning-record-picker>
+                            </div>
+                        </div>
+                        <template if:true={hasSupplierRecs}>
+                            <template for:each={supplierRecs} for:item="rec">
+                                <div key={rec.relatedRecordId} class="slds-box slds-var-m-bottom_small">
+                                    <div class="slds-grid slds-wrap">
+                                        <div class="slds-col slds-size_9-of-12">
+                                            <p class="slds-text-heading_small">{rec.title}</p>
+                                            <p class="slds-text-body_small slds-var-m-top_xx-small">{rec.description}</p>
+                                        </div>
+                                        <div class="slds-col slds-size_3-of-12 slds-text-align_right">
+                                            <lightning-badge label={rec.urgency}></lightning-badge>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </template>
+                        <template if:false={hasSupplierRecs}>
+                            <p class="slds-text-color_weak">Select a product to see supplier recommendations.</p>
+                        </template>
+                    </div>
+                </lightning-tab>
+            </lightning-tabset>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,141 @@
+<template>
+    <lightning-card title="Goods Receipt" icon-name="standard:receipt">
+        <div class="slds-var-m-around_medium">
+            <template if:true={successMessage}>
+                <div class="slds-notify slds-notify_toast slds-theme_success slds-var-m-bottom_medium" role="status">
+                    <p>{successMessage}</p>
+                </div>
+            </template>
+            <template if:true={errorMessage}>
+                <div class="slds-notify slds-notify_alert slds-alert_error slds-var-m-bottom_medium" role="alert">
+                    <p>{errorMessage}</p>
+                </div>
+            </template>
+
+            <!-- PO Selection -->
+            <div class="slds-grid slds-wrap slds-gutters slds-var-m-bottom_medium">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-3">
+                    <lightning-record-picker
+                        label="Purchase Order"
+                        object-api-name="Purchase_Order__c"
+                        value={selectedPoId}
+                        placeholder="Search purchase order..."
+                        onchange={handlePoChange}
+                        disabled={isPosted}>
+                    </lightning-record-picker>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-align-bottom">
+                    <lightning-button label="Load PO Lines" variant="neutral" onclick={loadPoLines} disabled={noPoSelected}></lightning-button>
+                </div>
+            </div>
+
+            <!-- PO Summary -->
+            <template if:true={poSummary}>
+                <div class="slds-box slds-theme_shade slds-var-m-bottom_medium">
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-size_1-of-3">
+                            <span class="slds-text-label">Supplier:</span>
+                            <span class="slds-var-m-left_x-small">{poSummary.supplierName}</span>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3">
+                            <span class="slds-text-label">Warehouse:</span>
+                            <span class="slds-var-m-left_x-small">{poSummary.warehouseName}</span>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3">
+                            <span class="slds-text-label">PO Status:</span>
+                            <span class="slds-var-m-left_x-small">{poSummary.status}</span>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Receipt Header -->
+            <template if:true={linesLoaded}>
+                <fieldset class="slds-box slds-var-m-bottom_medium">
+                    <legend class="slds-text-heading_small slds-var-m-bottom_small">Receipt Details</legend>
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input label="Receipt Date" type="date" value={receiptDate} onchange={handleReceiptDateChange} disabled={isPosted}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input label="Supplier Delivery Reference" value={supplierRef} onchange={handleSupplierRefChange} disabled={isPosted}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1">
+                            <lightning-input label="Inspection Notes" value={inspectionNotes} onchange={handleInspectionNotesChange} disabled={isPosted}></lightning-input>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Lines Table -->
+                <div class="slds-var-m-bottom_medium" style="overflow-x: auto;">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th><div class="slds-truncate">Product</div></th>
+                                <th class="slds-text-align_right"><div class="slds-truncate">Ordered</div></th>
+                                <th class="slds-text-align_right"><div class="slds-truncate">Remaining</div></th>
+                                <th style="min-width: 90px"><div class="slds-truncate">Delivered</div></th>
+                                <th style="min-width: 90px"><div class="slds-truncate">Accepted</div></th>
+                                <th style="min-width: 90px"><div class="slds-truncate">Rejected</div></th>
+                                <th style="min-width: 140px"><div class="slds-truncate">Rejection Reason</div></th>
+                                <th style="min-width: 120px"><div class="slds-truncate">Batch #</div></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={receiptLines} for:item="line" for:index="idx">
+                                <tr key={line.polId} class={line.rowClass}>
+                                    <td><div class="slds-truncate">{line.productName}</div></td>
+                                    <td class="slds-text-align_right">{line.quantityOrdered}</td>
+                                    <td class="slds-text-align_right">{line.remaining}</td>
+                                    <td>
+                                        <lightning-input type="number" label="" min="0" value={line.quantityDelivered} data-idx={idx} data-field="quantityDelivered" onchange={handleLineQtyChange} disabled={isPosted}></lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-input type="number" label="" min="0" value={line.quantityAccepted} data-idx={idx} data-field="quantityAccepted" onchange={handleLineQtyChange} disabled={isPosted}></lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-input type="number" label="" min="0" value={line.quantityRejected} data-idx={idx} data-field="quantityRejected" onchange={handleLineQtyChange} disabled={isPosted}></lightning-input>
+                                    </td>
+                                    <td>
+                                        <template if:true={line.hasRejected}>
+                                            <lightning-combobox label="" value={line.rejectionReason} options={rejectionReasonOptions} data-idx={idx} data-field="rejectionReason" onchange={handleLineSelectChange} disabled={isPosted}></lightning-combobox>
+                                        </template>
+                                    </td>
+                                    <td>
+                                        <lightning-input label="" value={line.batchNumber} data-idx={idx} data-field="batchNumber" onchange={handleLineTextChange} disabled={isPosted}></lightning-input>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Total Accepted -->
+                <div class="slds-grid slds-grid_align-end slds-var-m-bottom_medium">
+                    <div class="slds-col slds-size_1-of-4 slds-box slds-text-align_center">
+                        <p class="slds-text-heading_medium">{totalAccepted}</p>
+                        <p class="slds-text-body_small">Total Accepted Units</p>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <template if:false={isPosted}>
+                    <div class="slds-grid slds-gutters">
+                        <lightning-button variant="neutral" label="Save Receipt" onclick={handleSave} disabled={isSaving}></lightning-button>
+                        <lightning-button variant="brand" label="Post Receipt" onclick={handlePost} disabled={isSaving} class="slds-var-m-left_x-small"></lightning-button>
+                    </div>
+                </template>
+                <template if:true={isPosted}>
+                    <div class="slds-notify slds-notify_alert slds-theme_success" role="status">
+                        <lightning-icon icon-name="utility:check" size="x-small"></lightning-icon>
+                        <span class="slds-var-m-left_x-small">Receipt posted. Inventory has been updated.</span>
+                    </div>
+                </template>
+            </template>
+
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+            </template>
+        </div>
+    </lightning-card>
+</template>

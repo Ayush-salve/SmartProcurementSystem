@@ -1,0 +1,114 @@
+<template>
+    <lightning-card title="Supplier Comparison" icon-name="standard:account">
+        <div class="slds-var-m-around_medium">
+            <!-- Product Search -->
+            <div class="slds-grid slds-wrap slds-gutters slds-var-m-bottom_medium">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-3">
+                    <lightning-record-picker
+                        label="Select Product to Compare"
+                        placeholder="Search for a product..."
+                        object-api-name="Product2"
+                        value={selectedProductId}
+                        onchange={handleProductChange}>
+                    </lightning-record-picker>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-align-bottom">
+                    <template if:true={selectedProductId}>
+                        <lightning-button
+                            variant="brand"
+                            label="Compare Suppliers"
+                            onclick={loadSupplierOffers}>
+                        </lightning-button>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Loading -->
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading suppliers..." size="medium"></lightning-spinner>
+            </template>
+
+            <!-- Error -->
+            <template if:true={error}>
+                <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+                    <p>{error}</p>
+                </div>
+            </template>
+
+            <!-- No Suppliers -->
+            <template if:true={isEmpty}>
+                <div class="slds-var-m-around_medium slds-text-align_center">
+                    <lightning-icon icon-name="utility:info" size="medium"></lightning-icon>
+                    <p class="slds-var-m-top_small">No active supplier offers found for this product.</p>
+                </div>
+            </template>
+
+            <!-- Best Offer Banner -->
+            <template if:true={bestOffer}>
+                <div class="slds-notify slds-notify_alert slds-theme_success slds-var-m-bottom_medium" role="status">
+                    <lightning-icon icon-name="utility:success" alternative-text="Best offer" size="small"></lightning-icon>
+                    <strong class="slds-var-m-left_small">Best Offer: {bestOffer.supplierName}</strong>
+                    — Score: {bestOffer.compositeScore} | Price: {bestOffer.unitPrice} | Lead Time: {bestOffer.leadTimeDays} days
+                </div>
+            </template>
+
+            <!-- Comparison Table -->
+            <template if:true={hasOffers}>
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th scope="col"><div class="slds-truncate">Supplier</div></th>
+                            <th scope="col"><div class="slds-truncate">SKU</div></th>
+                            <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Unit Price</div></th>
+                            <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Lead Time</div></th>
+                            <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Min Qty</div></th>
+                            <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Quality</div></th>
+                            <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Delivery</div></th>
+                            <th scope="col" class="slds-text-align_right"><div class="slds-truncate">Score</div></th>
+                            <th scope="col"><div class="slds-truncate">Valid Until</div></th>
+                            <th scope="col"><div class="slds-truncate">Select</div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={supplierOffers} for:item="offer">
+                            <tr key={offer.supplierProductId} class={offer.rowClass}>
+                                <td>
+                                    <div class="slds-truncate">
+                                        {offer.supplierName}
+                                        <template if:true={offer.isBestOffer}>
+                                            <lightning-badge label="Best" class="slds-var-m-left_xx-small"></lightning-badge>
+                                        </template>
+                                    </div>
+                                </td>
+                                <td><div class="slds-truncate">{offer.sku}</div></td>
+                                <td class="slds-text-align_right"><div class="slds-truncate">{offer.unitPrice}</div></td>
+                                <td class="slds-text-align_right"><div class="slds-truncate">{offer.leadTimeDays} days</div></td>
+                                <td class="slds-text-align_right"><div class="slds-truncate">{offer.minimumOrderQty}</div></td>
+                                <td class="slds-text-align_right"><div class="slds-truncate">{offer.qualityRating}/5</div></td>
+                                <td class="slds-text-align_right"><div class="slds-truncate">{offer.deliveryRating}/5</div></td>
+                                <td class="slds-text-align_right"><div class="slds-truncate">{offer.compositeScore}</div></td>
+                                <td><div class="slds-truncate">{offer.validUntil}</div></td>
+                                <td>
+                                    <lightning-button
+                                        variant={offer.selectVariant}
+                                        label={offer.selectLabel}
+                                        data-id={offer.supplierProductId}
+                                        onclick={handleSelectSupplier}>
+                                    </lightning-button>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+
+            <!-- Selected Supplier Confirmation -->
+            <template if:true={selectedOffer}>
+                <div class="slds-notify slds-notify_toast slds-theme_success slds-var-m-top_medium" role="status">
+                    <p>Selected: <strong>{selectedOffer.supplierName}</strong>
+                       — Price: {selectedOffer.unitPrice} | Lead Time: {selectedOffer.leadTimeDays} days</p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

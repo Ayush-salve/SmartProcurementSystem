@@ -1,0 +1,57 @@
+<template>
+    <lightning-card title="Supplier Performance Dashboard" icon-name="standard:dashboard">
+        <div slot="actions">
+            <lightning-button label="Refresh" icon-name="utility:refresh" onclick={handleRefresh}></lightning-button>
+        </div>
+        <div class="slds-var-m-around_medium">
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+            </template>
+            <template if:true={error}>
+                <div class="slds-notify slds-notify_alert slds-alert_error" role="alert"><p>{error}</p></div>
+            </template>
+
+            <!-- Filter Bar -->
+            <div class="slds-grid slds-wrap slds-gutters slds-var-m-bottom_medium">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <lightning-combobox label="Risk Level Filter" value={riskFilter} options={riskOptions} onchange={handleRiskFilterChange}></lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-3">
+                    <lightning-record-picker label="Filter by Supplier" object-api-name="Account" value={supplierFilter} placeholder="All suppliers..." onchange={handleSupplierFilterChange}></lightning-record-picker>
+                </div>
+            </div>
+
+            <!-- Rankings Table -->
+            <template if:true={hasRankings}>
+                <h2 class="slds-text-heading_small slds-var-m-bottom_small">Supplier Rankings</h2>
+                <lightning-datatable
+                    key-field="supplierId"
+                    data={filteredRankings}
+                    columns={rankingColumns}
+                    hide-checkbox-column
+                    onrowaction={handleViewScorecard}>
+                </lightning-datatable>
+            </template>
+
+            <!-- Scorecard Detail for Selected Supplier -->
+            <template if:true={hasScorecard}>
+                <div class="slds-var-m-top_large">
+                    <h2 class="slds-text-heading_small slds-var-m-bottom_small">Scorecard History — {selectedSupplierName}</h2>
+                    <lightning-datatable
+                        key-field="Id"
+                        data={selectedScorecards}
+                        columns={scorecardColumns}
+                        hide-checkbox-column>
+                    </lightning-datatable>
+                </div>
+            </template>
+
+            <template if:true={isEmpty}>
+                <div class="slds-text-align_center slds-var-m-around_medium">
+                    <lightning-icon icon-name="utility:info" size="medium"></lightning-icon>
+                    <p class="slds-var-m-top_small">No supplier scorecard data available yet.</p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,3755 @@
+{
+  "version": 2,
+  "orgId": "00DdM000018141FUAQ",
+  "writtenAt": "2026-11-04T09:15:54.774Z",
+  "generation": 33,
+  "inventory": [],
+  "sobjects": {
+    "descriptions": []
+  },
+  "tracking": [],
+  "metadataTypes": [
+    {
+      "xmlName": "ActionLauncherItemDef",
+      "directoryName": "ActionLauncherItemDef",
+      "suffix": "actionLauncherItemDef",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ActionLinkGroupTemplate",
+      "directoryName": "actionLinkGroupTemplates",
+      "suffix": "actionLinkGroupTemplate",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AiAgentDefinition",
+      "directoryName": "aiAgents",
+      "suffix": "aiAgentDefinition",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AiAgentDefinitionVersion",
+      "directoryName": "aiAgentDefinitionVersions",
+      "suffix": "aiAgentDefinitionVersion",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AiAgentScorerDefinition",
+      "directoryName": "aiAgentScorerDefinitions",
+      "suffix": "aiAgentScorerDefinition",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AIApplication",
+      "directoryName": "aiApplications",
+      "suffix": "ai",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AIApplicationConfig",
+      "directoryName": "aiApplicationConfigs",
+      "suffix": "aiapplicationconfig",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AiAuthoringBundle",
+      "directoryName": "aiAuthoringBundles",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AiResponseFormat",
+      "directoryName": "aiResponseFormats",
+      "suffix": "aiResponseFormat",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [
+        "AiResponseFormatIstr"
+      ],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AiSurface",
+      "directoryName": "aiSurfaces",
+      "suffix": "aiSurface",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [
+        "AiSurfaceInput",
+        "AiSurfaceInstruction"
+      ],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AIWorksheetTemplate",
+      "directoryName": "aiWorksheetTemplates",
+      "suffix": "aiWorksheetTemplate",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AnalyticSnapshot",
+      "directoryName": "analyticSnapshots",
+      "suffix": "snapshot",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AnimationRule",
+      "directoryName": "animationRules",
+      "suffix": "animationRule",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ApexClass",
+      "directoryName": "classes",
+      "suffix": "cls",
+      "inFolder": false,
+      "metaFile": true,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ApexComponent",
+      "directoryName": "components",
+      "suffix": "component",
+      "inFolder": false,
+      "metaFile": true,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ApexEmailNotifications",
+      "directoryName": "apexEmailNotifications",
+      "suffix": "notifications",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ApexPage",
+      "directoryName": "pages",
+      "suffix": "page",
+      "inFolder": false,
+      "metaFile": true,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ApexTestSuite",
+      "directoryName": "testSuites",
+      "suffix": "testSuite",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ApexTrigger",
+      "directoryName": "triggers",
+      "suffix": "trigger",
+      "inFolder": false,
+      "metaFile": true,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ApiNamedQuery",
+      "directoryName": "apiNamedQueries",
+      "suffix": "apiNamedQuery",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AppFrameworkApp",
+      "directoryName": "appFrameworkApps",
+      "suffix": "appFrameworkApp",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AppFrameworkTemplateBundle",
+      "directoryName": "appTemplates",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AppMenu",
+      "directoryName": "appMenus",
+      "suffix": "appMenu",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AppointmentAssignmentPolicy",
+      "directoryName": "appointmentAssignmentPolicies",
+      "suffix": "policy",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AppointmentSchedulingPolicy",
+      "directoryName": "appointmentSchedulingPolicies",
+      "suffix": "policy",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ApprovalProcess",
+      "directoryName": "approvalProcesses",
+      "suffix": "approvalProcess",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AssignmentRules",
+      "directoryName": "assignmentRules",
+      "suffix": "assignmentRules",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [
+        "AssignmentRule"
+      ],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AuraDefinitionBundle",
+      "directoryName": "aura",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AuthProvider",
+      "directoryName": "authproviders",
+      "suffix": "authprovider",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "AutoResponseRules",
+      "directoryName": "autoResponseRules",
+      "suffix": "autoResponseRules",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [
+        "AutoResponseRule"
+      ],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "BlacklistedConsumer",
+      "directoryName": "blacklistedConsumers",
+      "suffix": "blacklistedConsumer",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "Bot",
+      "directoryName": "bots",
+      "suffix": "bot",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [
+        "BotVersion"
+      ],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "BotBlock",
+      "directoryName": "botBlocks",
+      "suffix": "botBlock",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [
+        "BotBlockVersion"
+      ],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "BotTemplate",
+      "directoryName": "botTemplates",
+      "suffix": "botTemplate",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "BrandingSet",
+      "directoryName": "brandingSets",
+      "suffix": "brandingSet",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "BriefcaseDefinition",
+      "directoryName": "briefcaseDefinitions",
+      "suffix": "briefcaseDefinition",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CallCenter",
+      "directoryName": "callCenters",
+      "suffix": "callCenter",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CallCenterRoutingMap",
+      "directoryName": "callCenterRoutingMaps",
+      "suffix": "callCenterRoutingMap",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CallCoachingMediaProvider",
+      "directoryName": "callCoachingMediaProviders",
+      "suffix": "callCoachingMediaProvider",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CanvasMetadata",
+      "directoryName": "Canvases",
+      "suffix": "Canvas",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CatalogedApi",
+      "directoryName": "catalogedApis",
+      "suffix": "catalogedApi",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CatalogedApiArtifactVersionInfo",
+      "directoryName": "catalogedApiArtifactVersionInfos",
+      "suffix": "catalogedApiArtifactVersionInfo",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CatalogedApiVersion",
+      "directoryName": "catalogedApiVersions",
+      "suffix": "catalogedApiVersion",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "Certificate",
+      "directoryName": "certs",
+      "suffix": "crt",
+      "inFolder": false,
+      "metaFile": true,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ChannelLayout",
+      "directoryName": "channelLayouts",
+      "suffix": "channelLayout",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ChatterExtension",
+      "directoryName": "ChatterExtensions",
+      "suffix": "ChatterExtension",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ChoiceList",
+      "directoryName": "ChoiceList",
+      "suffix": "ChoiceList",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CleanDataService",
+      "directoryName": "cleanDataServices",
+      "suffix": "cleanDataService",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "Community",
+      "directoryName": "communities",
+      "suffix": "community",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ConnectedApp",
+      "directoryName": "connectedApps",
+      "suffix": "connectedApp",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ContentAsset",
+      "directoryName": "contentassets",
+      "suffix": "asset",
+      "inFolder": false,
+      "metaFile": true,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ContentTypeBundle",
+      "directoryName": "contentTypes",
+      "suffix": "contentType",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ContentWorkspacePermission",
+      "directoryName": "contentWorkspacePermissions",
+      "suffix": "contentWorkspacePermission",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ConversationChannelDefinition",
+      "directoryName": "conversationChannelDefinitions",
+      "suffix": "ConversationChannelDefinition",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ConversationMessageDefinition",
+      "directoryName": "conversationMessageDefinitions",
+      "suffix": "conversationMessageDefinition",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ConversationVendorInfo",
+      "directoryName": "ConversationVendorInformation",
+      "suffix": "ConversationVendorInformation",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ConvIntelligenceSignalRule",
+      "directoryName": "ConvIntelligenceSignalRule",
+      "suffix": "ConvIntelligenceSignalRule",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CorsWhitelistOrigin",
+      "directoryName": "corsWhitelistOrigins",
+      "suffix": "corsWhitelistOrigin",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CspTrustedSite",
+      "directoryName": "cspTrustedSites",
+      "suffix": "cspTrustedSite",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CustomApplication",
+      "directoryName": "applications",
+      "suffix": "app",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CustomApplicationComponent",
+      "directoryName": "customApplicationComponents",
+      "suffix": "customApplicationComponent",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CustomFeedFilter",
+      "directoryName": "feedFilters",
+      "suffix": "feedFilter",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CustomHelpMenuSection",
+      "directoryName": "customHelpMenuSections",
+      "suffix": "customHelpMenuSection",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CustomIndex",
+      "directoryName": "customindex",
+      "suffix": "indx",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CustomLabels",
+      "directoryName": "labels",
+      "suffix": "labels",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [
+        "CustomLabel"
+      ],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CustomMetadata",
+      "directoryName": "customMetadata",
+      "suffix": "md",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CustomNotificationType",
+      "directoryName": "notificationtypes",
+      "suffix": "notiftype",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CustomObject",
+      "directoryName": "objects",
+      "suffix": "object",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [
+        "BusinessProcess",
+        "CompactLayout",
+        "CustomField",
+        "FieldSet",
+        "Index",
+        "ListView",
+        "RecordType",
+        "SharingReason",
+        "ValidationRule",
+        "WebLink"
+      ],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CustomObjectTranslation",
+      "directoryName": "objectTranslations",
+      "suffix": "objectTranslation",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CustomPageWebLink",
+      "directoryName": "weblinks",
+      "suffix": "weblink",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CustomPermission",
+      "directoryName": "customPermissions",
+      "suffix": "customPermission",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CustomSite",
+      "directoryName": "sites",
+      "suffix": "site",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "CustomTab",
+      "directoryName": "tabs",
+      "suffix": "tab",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "Dashboard",
+      "directoryName": "dashboards",
+      "suffix": "dashboard",
+      "inFolder": true,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "DataCategoryGroup",
+      "directoryName": "datacategorygroups",
+      "suffix": "datacategorygroup",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "DataWeaveResource",
+      "directoryName": "dw",
+      "suffix": "dwl",
+      "inFolder": false,
+      "metaFile": true,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "DebugLevel",
+      "directoryName": "debugLevels",
+      "suffix": "debugLevel",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "DelegateGroup",
+      "directoryName": "delegateGroups",
+      "suffix": "delegateGroup",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "DgtAssetMgmtProvider",
+      "directoryName": "dgtAssetMgmtProviders",
+      "suffix": "dgtAssetMgmtProvider",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "DgtAssetMgmtPrvdLghtCpnt",
+      "directoryName": "dgtAssetMgmtPrvdLghtCpnts",
+      "suffix": "dgtAssetMgmtPrvdLghtCpnt",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "DigitalExperienceBundle",
+      "directoryName": "digitalExperiences",
+      "suffix": "digitalExperience",
+      "inFolder": false,
+      "metaFile": true,
+      "childXmlNames": [
+        "DigitalExperience"
+      ],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "DocProcDefinition",
+      "directoryName": "docProcDefinitions",
+      "suffix": "docProcDefinition",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "Document",
+      "directoryName": "documents",
+      "inFolder": true,
+      "metaFile": true,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "DuplicateRule",
+      "directoryName": "duplicateRules",
+      "suffix": "duplicateRule",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "EclairGeoData",
+      "directoryName": "eclair",
+      "suffix": "geodata",
+      "inFolder": false,
+      "metaFile": true,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "EmailServicesFunction",
+      "directoryName": "emailservices",
+      "suffix": "xml",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "EmailTemplate",
+      "directoryName": "email",
+      "suffix": "email",
+      "inFolder": true,
+      "metaFile": true,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "EmbeddedServiceBranding",
+      "directoryName": "EmbeddedServiceBranding",
+      "suffix": "EmbeddedServiceBranding",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "EmbeddedServiceConfig",
+      "directoryName": "EmbeddedServiceConfig",
+      "suffix": "EmbeddedServiceConfig",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "EmbeddedServiceFlowConfig",
+      "directoryName": "EmbeddedServiceFlowConfig",
+      "suffix": "EmbeddedServiceFlowConfig",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "EmbeddedServiceMenuSettings",
+      "directoryName": "EmbeddedServiceMenuSettings",
+      "suffix": "EmbeddedServiceMenuSettings",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "EngmtChannelTypeConfig",
+      "directoryName": "engmtChannelTypeConfigs",
+      "suffix": "engmtChannelTypeConfig",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "EntitlementProcess",
+      "directoryName": "entitlementProcesses",
+      "suffix": "entitlementProcess",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "EntitlementTemplate",
+      "directoryName": "entitlementTemplates",
+      "suffix": "entitlementTemplate",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "EscalationRules",
+      "directoryName": "escalationRules",
+      "suffix": "escalationRules",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [
+        "EscalationRule"
+      ],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "EventRelayConfig",
+      "directoryName": "eventRelays",
+      "suffix": "eventRelay",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExperienceContainer",
+      "directoryName": "experienceContainers",
+      "suffix": "experienceContainer",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExperiencePropertyTypeBundle",
+      "directoryName": "experiencePropertyTypeBundles",
+      "suffix": "experiencePropertyTypeBundle",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExternalAIModel",
+      "directoryName": "externalAIModels",
+      "suffix": "externalAIModel",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExternalAuthIdentityProvider",
+      "directoryName": "externalAuthIdentityProviders",
+      "suffix": "externalAuthIdentityProvider",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExternalClientApplication",
+      "directoryName": "externalClientApps",
+      "suffix": "eca",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExternalCredential",
+      "directoryName": "externalCredentials",
+      "suffix": "externalCredential",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExternalDataSource",
+      "directoryName": "dataSources",
+      "suffix": "dataSource",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [
+        "ExternalDataSrcDescriptor"
+      ],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExternalServiceRegistration",
+      "directoryName": "externalServiceRegistrations",
+      "suffix": "externalServiceRegistration",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExtlClntAppCanvasSettings",
+      "directoryName": "extlClntAppCanvasSettings",
+      "suffix": "ecaCanvas",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExtlClntAppConfigurablePolicies",
+      "directoryName": "extlClntAppPolicies",
+      "suffix": "ecaPlcy",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExtlClntAppGlobalOauthSettings",
+      "directoryName": "extlClntAppGlobalOauthSets",
+      "suffix": "ecaGlblOauth",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExtlClntAppMobileConfigurablePolicies",
+      "directoryName": "extlClntAppMobilePolicies",
+      "suffix": "ecaMobilePlcy",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExtlClntAppMobileSettings",
+      "directoryName": "extlClntAppMobileSettings",
+      "suffix": "ecaMobile",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExtlClntAppNotificationSettings",
+      "directoryName": "extlClntAppNotifSettings",
+      "suffix": "ecaNotifications",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExtlClntAppOauthConfigurablePolicies",
+      "directoryName": "extlClntAppOauthPolicies",
+      "suffix": "ecaOauthPlcy",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExtlClntAppOauthSecuritySettings",
+      "directoryName": "extlClntAppOauthSecuritySettings",
+      "suffix": "ecaOauthSecurity",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExtlClntAppOauthSettings",
+      "directoryName": "extlClntAppOauthSettings",
+      "suffix": "ecaOauth",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExtlClntAppPushConfigurablePolicies",
+      "directoryName": "extlClntAppPushPolicies",
+      "suffix": "ecaPushPlcy",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExtlClntAppPushSettings",
+      "directoryName": "extlClntAppPushSettings",
+      "suffix": "ecaPush",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ExtlClntAppSamlConfigurablePolicies",
+      "directoryName": "extlClntAppSamlConfigurablePolicies",
+      "suffix": "ecaSamlPlcy",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "FieldRestrictionRule",
+      "directoryName": "fieldRestrictionRules",
+      "suffix": "rule",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "FieldServiceMobileConfig",
+      "directoryName": "fieldServiceMobileConfigs",
+      "suffix": "fieldServiceMobileConfig",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "FlexiPage",
+      "directoryName": "flexipages",
+      "suffix": "flexipage",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "Flow",
+      "directoryName": "flows",
+      "suffix": "flow",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "FlowCategory",
+      "directoryName": "flowCategories",
+      "suffix": "flowCategory",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "FlowDefinition",
+      "directoryName": "flowDefinitions",
+      "suffix": "flowDefinition",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "FlowTest",
+      "directoryName": "flowtests",
+      "suffix": "flowtest",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "FlowValueMap",
+      "directoryName": "flowValueMaps",
+      "suffix": "flowvaluemap",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "GatewayProviderPaymentMethodType",
+      "directoryName": "gatewayProviderPaymentMethodTypes",
+      "suffix": "gatewayProviderPaymentMethodType",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "GenAiFunction",
+      "directoryName": "genAiFunctions",
+      "suffix": "genAiFunction",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "GenAiPlugin",
+      "directoryName": "genAiPlugins",
+      "suffix": "genAiPlugin",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "GenAiPromptTemplate",
+      "directoryName": "genAiPromptTemplates",
+      "suffix": "genAiPromptTemplate",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "GenAiPromptTemplateActv",
+      "directoryName": "genAiPromptTemplateActivations",
+      "suffix": "genAiPromptTemplateActivation",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "GlobalValueSet",
+      "directoryName": "globalValueSets",
+      "suffix": "globalValueSet",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "GlobalValueSetTranslation",
+      "directoryName": "globalValueSetTranslations",
+      "suffix": "globalValueSetTranslation",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "Group",
+      "directoryName": "groups",
+      "suffix": "group",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "HomePageComponent",
+      "directoryName": "homePageComponents",
+      "suffix": "homePageComponent",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "HomePageLayout",
+      "directoryName": "homePageLayouts",
+      "suffix": "homePageLayout",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "IframeWhiteListUrlSettings",
+      "directoryName": "iframeWhiteListUrlSettings",
+      "suffix": "iframeWhiteListUrlSettings",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "InboundNetworkConnection",
+      "directoryName": "inboundNetworkConnections",
+      "suffix": "inboundNetworkConnection",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "InvocableActionExtension",
+      "directoryName": "invocableactionextensions",
+      "suffix": "invocableactionextension",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "IPAddressRange",
+      "directoryName": "IPAddressRanges",
+      "suffix": "IPAddressRange",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "Layout",
+      "directoryName": "layouts",
+      "suffix": "layout",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "LeadConvertSettings",
+      "directoryName": "LeadConvertSettings",
+      "suffix": "LeadConvertSetting",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "Letterhead",
+      "directoryName": "letterhead",
+      "suffix": "letter",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "LightningBolt",
+      "directoryName": "lightningBolts",
+      "suffix": "lightningBolt",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "LightningComponentBundle",
+      "directoryName": "lwc",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "LightningExperienceTheme",
+      "directoryName": "lightningExperienceThemes",
+      "suffix": "lightningExperienceTheme",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "LightningMessageChannel",
+      "directoryName": "messageChannels",
+      "suffix": "messageChannel",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "LightningOnboardingConfig",
+      "directoryName": "lightningOnboardingConfigs",
+      "suffix": "lightningOnboardingConfig",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "LightningOutApp",
+      "directoryName": "lightningOutApps",
+      "suffix": "lightningOutApp",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "LightningTypeBundle",
+      "directoryName": "lightningTypes",
+      "suffix": "lightningType",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "LiveChatSensitiveDataRule",
+      "directoryName": "liveChatSensitiveDataRule",
+      "suffix": "liveChatSensitiveDataRule",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "MailAppOwaWhitelist",
+      "directoryName": "mailAppOwaWhitelists",
+      "suffix": "mailAppOwaWhitelist",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ManagedContentType",
+      "directoryName": "managedContentTypes",
+      "suffix": "managedContentType",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ManagedEventSubscription",
+      "directoryName": "managedEventSubscriptions",
+      "suffix": "managedEventSubscription",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "MatchingRules",
+      "directoryName": "matchingRules",
+      "suffix": "matchingRule",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [
+        "MatchingRule"
+      ],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "McpServerDefinition",
+      "directoryName": "mcpServerDefinitions",
+      "suffix": "mcpServerDefinition",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "MessagingChannel",
+      "directoryName": "messagingChannels",
+      "suffix": "messagingChannel",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "MilestoneType",
+      "directoryName": "milestoneTypes",
+      "suffix": "milestoneType",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "MLDataDefinition",
+      "directoryName": "mlDataDefinitions",
+      "suffix": "mlDataDefinition",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "MlDomain",
+      "directoryName": "mlDomains",
+      "suffix": "mlDomain",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "MLPredictionDefinition",
+      "directoryName": "mlPredictions",
+      "suffix": "mlPrediction",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "MLRecommendationDefinition",
+      "directoryName": "mlRecommendations",
+      "suffix": "mlRecommendation",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "MobileApplicationDetail",
+      "directoryName": "MobileApplicationDetails",
+      "suffix": "MobileApplicationDetail",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "MutingPermissionSet",
+      "directoryName": "mutingpermissionsets",
+      "suffix": "mutingpermissionset",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "MyDomainDiscoverableLogin",
+      "directoryName": "myDomainDiscoverableLogins",
+      "suffix": "myDomainDiscoverableLogin",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "NamedCredential",
+      "directoryName": "namedCredentials",
+      "suffix": "namedCredential",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "NetworkBranding",
+      "directoryName": "networkBranding",
+      "suffix": "networkBranding",
+      "inFolder": false,
+      "metaFile": true,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "NotificationTypeConfig",
+      "directoryName": "notificationTypeConfig",
+      "suffix": "config",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "OauthCustomScope",
+      "directoryName": "oauthcustomscopes",
+      "suffix": "oauthcustomscope",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "OauthTokenExchangeHandler",
+      "directoryName": "oauthtokenexchangehandlers",
+      "suffix": "oauthtokenexchangehandler",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "OutboundNetworkConnection",
+      "directoryName": "outboundNetworkConnections",
+      "suffix": "outboundNetworkConnection",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "PathAssistant",
+      "directoryName": "pathAssistants",
+      "suffix": "pathAssistant",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "PaymentGatewayProvider",
+      "directoryName": "paymentGatewayProviders",
+      "suffix": "paymentGatewayProvider",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "PermissionSet",
+      "directoryName": "permissionsets",
+      "suffix": "permissionset",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "PermissionSetGroup",
+      "directoryName": "permissionsetgroups",
+      "suffix": "permissionsetgroup",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "PermissionSetLicenseDefinition",
+      "directoryName": "permissionSetLicenseDefinitions",
+      "suffix": "permissionSetLicenseDefinition",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "PlatformCachePartition",
+      "directoryName": "cachePartitions",
+      "suffix": "cachePartition",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "PlatformEventChannel",
+      "directoryName": "platformEventChannels",
+      "suffix": "platformEventChannel",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "PlatformEventChannelMember",
+      "directoryName": "platformEventChannelMembers",
+      "suffix": "platformEventChannelMember",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "PlatformEventMigration",
+      "directoryName": "platformEventMigrations",
+      "suffix": "platformEventMigration",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "PlatformEventSubscriberConfig",
+      "directoryName": "PlatformEventSubscriberConfigs",
+      "suffix": "platformEventSubscriberConfig",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "PostTemplate",
+      "directoryName": "postTemplates",
+      "suffix": "postTemplate",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ProcessFlowMigration",
+      "directoryName": "processflowmigrations",
+      "suffix": "processflowmigration",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ProductAttributeSet",
+      "directoryName": "productAttributeSets",
+      "suffix": "productAttributeSet",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ProfilePasswordPolicy",
+      "directoryName": "profilePasswordPolicies",
+      "suffix": "profilePasswordPolicy",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ProfileSessionSetting",
+      "directoryName": "profileSessionSettings",
+      "suffix": "profileSessionSetting",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "Prompt",
+      "directoryName": "prompts",
+      "suffix": "prompt",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "PublicKeyCertificate",
+      "directoryName": "PublicKeyCertificate",
+      "suffix": "PublicKeyCertificate",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "PublicKeyCertificateSet",
+      "directoryName": "PublicKeyCertificateSet",
+      "suffix": "PublicKeyCertificateSet",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "Queue",
+      "directoryName": "queues",
+      "suffix": "queue",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "QuickAction",
+      "directoryName": "quickActions",
+      "suffix": "quickAction",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "RecommendationStrategy",
+      "directoryName": "recommendationStrategies",
+      "suffix": "recommendationStrategy",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "RecordActionDeployment",
+      "directoryName": "recordActionDeployments",
+      "suffix": "deployment",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "RedirectWhitelistUrl",
+      "directoryName": "redirectWhitelistUrls",
+      "suffix": "redirectWhitelistUrl",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "RemoteSiteSetting",
+      "directoryName": "remoteSiteSettings",
+      "suffix": "remoteSite",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ReplyEmailConfig",
+      "directoryName": "replyEmailConfigs",
+      "suffix": "replyEmailConfig",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "Report",
+      "directoryName": "reports",
+      "suffix": "report",
+      "inFolder": true,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ReportType",
+      "directoryName": "reportTypes",
+      "suffix": "reportType",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "RestrictionRule",
+      "directoryName": "restrictionRules",
+      "suffix": "rule",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "Role",
+      "directoryName": "roles",
+      "suffix": "role",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "SamlSsoConfig",
+      "directoryName": "samlssoconfigs",
+      "suffix": "samlssoconfig",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "SchedulingObjective",
+      "directoryName": "SchedulingObjectives",
+      "suffix": "SchedulingObjective",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "SchedulingRule",
+      "directoryName": "SchedulingRules",
+      "suffix": "SchedulingRule",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "SearchCustomization",
+      "directoryName": "searchCustomizations",
+      "suffix": "searchCustomization",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "SearchOrgWideObjectConfig",
+      "directoryName": "searchOrgWideConfiguration",
+      "suffix": "searchOrgWideObjectConfig",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "SecurityCustomBaseline",
+      "directoryName": "securityCustomBaselines",
+      "suffix": "securityCustomBaseline",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ServiceAISetupDefinition",
+      "directoryName": "serviceAISetupDescriptions",
+      "suffix": "serviceAISetupDescription",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "ServiceAISetupField",
+      "directoryName": "serviceAISetupFields",
+      "suffix": "serviceAISetupField",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "Settings",
+      "directoryName": "settings",
+      "suffix": "settings",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "SharingRules",
+      "directoryName": "sharingRules",
+      "suffix": "sharingRules",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [
+        "SharingCriteriaRule",
+        "SharingGuestRule",
+        "SharingOwnerRule"
+      ],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "SharingSet",
+      "directoryName": "sharingSets",
+      "suffix": "sharingSet",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "SiteDotCom",
+      "directoryName": "siteDotComSites",
+      "suffix": "site",
+      "inFolder": false,
+      "metaFile": true,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "Skill",
+      "directoryName": "skills",
+      "suffix": "skill",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "SkillType",
+      "directoryName": "skilltypes",
+      "suffix": "skilltype",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "SrvcMgmtCollabAppFldDef",
+      "directoryName": "srvcMgmtCollabAppFldDefs",
+      "suffix": "srvcMgmtCollabAppFldDef",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "SrvcMgmtCollabAppObjDef",
+      "directoryName": "srvcMgmtCollabAppObjDefs",
+      "suffix": "srvcMgmtCollabAppObjDef",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "StandardValueSet",
+      "directoryName": "standardValueSets",
+      "suffix": "standardValueSet",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "StandardValueSetTranslation",
+      "directoryName": "standardValueSetTranslations",
+      "suffix": "standardValueSetTranslation",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "StaticDynamicValMapping",
+      "directoryName": "staticDynamicValMappings",
+      "suffix": "staticDynamicValMapping",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "StaticResource",
+      "directoryName": "staticresources",
+      "suffix": "resource",
+      "inFolder": false,
+      "metaFile": true,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "SynonymDictionary",
+      "directoryName": "synonymDictionaries",
+      "suffix": "synonymDictionary",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "TagSet",
+      "directoryName": "tagSet",
+      "suffix": "tagSet",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [
+        "Tag"
+      ],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "TimeSheetTemplate",
+      "directoryName": "timeSheetTemplates",
+      "suffix": "timeSheetTemplate",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "TopicsForObjects",
+      "directoryName": "topicsForObjects",
+      "suffix": "topicsForObjects",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "TransactionSecurityPolicy",
+      "directoryName": "transactionSecurityPolicies",
+      "suffix": "transactionSecurityPolicy",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "UIBundle",
+      "directoryName": "uiBundles",
+      "suffix": "uibundle",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "UiFormatSpecificationSet",
+      "directoryName": "uiFormatSpecificationSets",
+      "suffix": "uiFormatSpecificationSet",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "UserProvisioningConfig",
+      "directoryName": "userProvisioningConfigs",
+      "suffix": "userProvisioningConfig",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "WaveAnalyticAssetCollection",
+      "directoryName": "wave",
+      "suffix": "collection",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    },
+    {
+      "xmlName": "Workflow",
+      "directoryName": "workflows",
+      "suffix": "workflow",
+      "inFolder": false,
+      "metaFile": false,
+      "childXmlNames": [
+        "WorkflowAlert",
+        "WorkflowFieldUpdate",
+        "WorkflowFlowAutomation",
+        "WorkflowKnowledgePublish",
+        "WorkflowOutboundMessage",
+        "WorkflowRule",
+        "WorkflowSend",
+        "WorkflowTask"
+      ],
+      "observedAt": "2026-11-04T08:50:22.598Z"
+    }
+  ],
+  "metadataListings": [
+    {
+      "xmlName": "ApexClass",
+      "observedAt": "2026-11-04T08:50:23.656Z",
+      "components": []
+    },
+    {
+      "xmlName": "AppMenu",
+      "observedAt": "2026-11-04T08:50:39.110Z",
+      "components": [
+        {
+          "fullName": "AppSwitcher",
+          "fileName": "appMenus/AppSwitcher.appMenu",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "1970-01-01T00:00:00.000Z"
+        },
+        {
+          "fullName": "Salesforce1",
+          "fileName": "appMenus/Salesforce1.appMenu",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "1970-01-01T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "xmlName": "CustomMetadata",
+      "observedAt": "2026-11-04T08:50:46.139Z",
+      "components": []
+    },
+    {
+      "xmlName": "Layout",
+      "observedAt": "2026-11-04T08:50:57.006Z",
+      "components": [
+        {
+          "fullName": "Account-Account %28Marketing%29 Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Account-Account %28Marketing%29 Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Account-Account %28Sales%29 Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Account-Account %28Sales%29 Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Account-Account %28Support%29 Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Account-Account %28Support%29 Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Account-Account Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Account-Account Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Address-Address Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Address-Address Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "AlternativePaymentMethod-Alternative Payment Method Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/AlternativePaymentMethod-Alternative Payment Method Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ApiAnomalyEventStore-API Anomaly Event Store Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ApiAnomalyEventStore-API Anomaly Event Store Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "AppointmentInvitation-Appointment Invitation Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/AppointmentInvitation-Appointment Invitation Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ApptBundleConfig-Appointment Bundle Config Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ApptBundleConfig-Appointment Bundle Config Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "ApptBundlePolicy-Appointment Bundle Policy Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ApptBundlePolicy-Appointment Bundle Policy Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "Asset-Asset Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Asset-Asset Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "AssetAction-Asset Action Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/AssetAction-Asset Action Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "AssetActionSource-Asset Action Source Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/AssetActionSource-Asset Action Source Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "AssetRelationship-Asset Relationship Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/AssetRelationship-Asset Relationship Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "AssetStatePeriod-Asset State Period Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/AssetStatePeriod-Asset State Period Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "AssignedResource-Assigned Resource Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/AssignedResource-Assigned Resource Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "AssociatedLocation-Associated Location Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/AssociatedLocation-Associated Location Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "AsyncOperationLog-Async Operation Log Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/AsyncOperationLog-Async Operation Log Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "AuthorizationForm-Authorization Form Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/AuthorizationForm-Authorization Form Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "AuthorizationFormConsent-Authorization Form Consent Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/AuthorizationFormConsent-Authorization Form Consent Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "AuthorizationFormDataUse-Authorization Form Data Use Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/AuthorizationFormDataUse-Authorization Form Data Use Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "AuthorizationFormText-Authorization Form Text Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/AuthorizationFormText-Authorization Form Text Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "BusinessBrand-Business Brand Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/BusinessBrand-Business Brand Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Campaign-Campaign Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Campaign-Campaign Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "CampaignMember-Campaign Member Page Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/CampaignMember-Campaign Member Page Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "CardPaymentMethod-Card Payment Method Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/CardPaymentMethod-Card Payment Method Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "CartCheckoutSession-Cart Checkout Session Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/CartCheckoutSession-Cart Checkout Session Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "CartDeliveryGroup-Cart Delivery Group Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/CartDeliveryGroup-Cart Delivery Group Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "CartDeliveryGroupMethod-Cart Delivery Group Method Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/CartDeliveryGroupMethod-Cart Delivery Group Method Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "CartItem-Cart Item Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/CartItem-Cart Item Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "CartTax-Cart Tax Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/CartTax-Cart Tax Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "CartValidationOutput-Cart Validation Output Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/CartValidationOutput-Cart Validation Output Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Case-Case %28Marketing%29 Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Case-Case %28Marketing%29 Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Case-Case %28Sales%29 Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Case-Case %28Sales%29 Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Case-Case %28Support%29 Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Case-Case %28Support%29 Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Case-Case Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Case-Case Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "CaseClose-Close Case Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/CaseClose-Close Case Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "CaseMilestone-Case Milestone Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/CaseMilestone-Case Milestone Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "CommunityMemberLayout-Community Member Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/CommunityMemberLayout-Community Member Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ConsumptionRate-Consumption Rate Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ConsumptionRate-Consumption Rate Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ConsumptionSchedule-Consumption Schedule Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ConsumptionSchedule-Consumption Schedule Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Contact-Contact %28Marketing%29 Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Contact-Contact %28Marketing%29 Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Contact-Contact %28Sales%29 Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Contact-Contact %28Sales%29 Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Contact-Contact %28Support%29 Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Contact-Contact %28Support%29 Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Contact-Contact Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Contact-Contact Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ContactPointAddress-Contact Point Address Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ContactPointAddress-Contact Point Address Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ContactPointEmail-Contact Point Email Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ContactPointEmail-Contact Point Email Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ContactPointPhone-Contact Point Phone Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ContactPointPhone-Contact Point Phone Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ContactPointTypeConsent-Contact Point Type Consent Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ContactPointTypeConsent-Contact Point Type Consent Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ContentVersion-Content Version Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ContentVersion-Content Version Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Contract-Contract Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Contract-Contract Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ContractLineItem-Contract Line Item Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ContractLineItem-Contract Line Item Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ContractLineOutcome-Contract Line Outcome Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ContractLineOutcome-Contract Line Outcome Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "ContractLineOutcomeData-Contract Line Outcome Data Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ContractLineOutcomeData-Contract Line Outcome Data Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "CredentialStuffingEventStore-Credential Stuffing Event Store Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/CredentialStuffingEventStore-Credential Stuffing Event Store Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "CreditMemo-Credit Memo Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/CreditMemo-Credit Memo Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "CreditMemoInvApplication-Credit Memo Invoice Application Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/CreditMemoInvApplication-Credit Memo Invoice Application Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "CreditMemoLine-Credit Memo Line Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/CreditMemoLine-Credit Memo Line Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Customer-Customer Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Customer-Customer Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "DandBCompany-D%26B Company Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/DandBCompany-D%26B Company Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "DataUseLegalBasis-Data Use Legal Basis Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/DataUseLegalBasis-Data Use Legal Basis Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "DataUsePurpose-Data Use Purpose Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/DataUsePurpose-Data Use Purpose Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "DigitalWallet-Digital Wallet Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/DigitalWallet-Digital Wallet Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "DuplicateRecordSet-Duplicate Record Set Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/DuplicateRecordSet-Duplicate Record Set Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "DynamicDataCapture-Dynamic Data Capture Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/DynamicDataCapture-Dynamic Data Capture Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "EmailMessage-Email Message Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/EmailMessage-Email Message Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "EngagementChannelType-Engagement Channel Type Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/EngagementChannelType-Engagement Channel Type Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Entitlement-Entitlement Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Entitlement-Entitlement Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "EntityMilestone-Object Milestone Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/EntityMilestone-Object Milestone Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Event-Event Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Event-Event Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Expense-Expense Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Expense-Expense Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "ExpenseReport-Expense Report Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ExpenseReport-Expense Report Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "ExpenseReportEntry-Expense Report Entry Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ExpenseReportEntry-Expense Report Entry Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "Experience__c-Experience Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Experience__c-Experience Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "External_Guest__c-External Guest Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/External_Guest__c-External Guest Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "External_Reservation__c-External Reservation Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/External_Reservation__c-External Reservation Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "FeedItem-Feed Item Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/FeedItem-Feed Item Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "FinanceBalanceSnapshot-Finance Balance Snapshot Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/FinanceBalanceSnapshot-Finance Balance Snapshot Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "FinanceTransaction-Finance Transaction Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/FinanceTransaction-Finance Transaction Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "FldSvcObjChg-Field Service Object Change Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/FldSvcObjChg-Field Service Object Change Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "FldSvcObjChgDtl-Field Service Object Change Detail Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/FldSvcObjChgDtl-Field Service Object Change Detail Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "FulfillmentOrder-Fulfillment Order Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/FulfillmentOrder-Fulfillment Order Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "FulfillmentOrderItemAdjustment-Fulfillment Order Item Adjustment Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/FulfillmentOrderItemAdjustment-Fulfillment Order Item Adjustment Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "FulfillmentOrderItemTax-Fulfillment Order Item Tax Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/FulfillmentOrderItemTax-Fulfillment Order Item Tax Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "FulfillmentOrderLineItem-Fulfillment Order Product Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/FulfillmentOrderLineItem-Fulfillment Order Product Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Global-Global Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Global-Global Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-09-29T03:09:04.000Z"
+        },
+        {
+          "fullName": "Goods_Receipt__c-Goods Receipt Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Goods_Receipt__c-Goods Receipt Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T20:03:13.000Z"
+        },
+        {
+          "fullName": "Goods_Receipt_Line__c-Goods Receipt Line Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Goods_Receipt_Line__c-Goods Receipt Line Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T20:03:13.000Z"
+        },
+        {
+          "fullName": "Guest_Event__c-Guest Event Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Guest_Event__c-Guest Event Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "GuestUserAnomalyEventStore-Guest User Anomaly Event Store Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/GuestUserAnomalyEventStore-Guest User Anomaly Event Store Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Idea-Idea Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Idea-Idea Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-09-29T03:09:04.000Z"
+        },
+        {
+          "fullName": "Individual-Individual Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Individual-Individual Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Inventory__c-Inventory Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Inventory__c-Inventory Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T20:03:14.000Z"
+        },
+        {
+          "fullName": "Inventory_Transaction__c-Inventory Transaction Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Inventory_Transaction__c-Inventory Transaction Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T20:03:14.000Z"
+        },
+        {
+          "fullName": "Invoice-Invoice Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Invoice-Invoice Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "InvoiceLine-Invoice Line Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/InvoiceLine-Invoice Line Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "JobProfile-Job Profile Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/JobProfile-Job Profile Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "Lead-Lead %28Marketing%29 Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Lead-Lead %28Marketing%29 Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Lead-Lead %28Sales%29 Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Lead-Lead %28Sales%29 Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Lead-Lead %28Support%29 Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Lead-Lead %28Support%29 Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Lead-Lead Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Lead-Lead Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "LegalEntity-Legal Entity Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/LegalEntity-Legal Entity Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Location-Location Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Location-Location Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "LocationGroup-Location Group Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/LocationGroup-Location Group Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "LocationGroupAssignment-Location Group Assignment Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/LocationGroupAssignment-Location Group Assignment Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "LoginAnomalyEventStore-Login Anomaly Event Store Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/LoginAnomalyEventStore-Login Anomaly Event Store Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Macro-Macro Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Macro-Macro Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "MaintenanceAsset-Maintenance Asset Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/MaintenanceAsset-Maintenance Asset Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "MaintenancePlan-Maintenance Plan Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/MaintenancePlan-Maintenance Plan Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "MaintenanceWorkRule-Maintenance Work Rule Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/MaintenanceWorkRule-Maintenance Work Rule Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "OperatingHours-Operating Hours Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/OperatingHours-Operating Hours Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "OperatingHoursHoliday-Operating Hours Holiday Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/OperatingHoursHoliday-Operating Hours Holiday Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "Opportunity-Opportunity %28Marketing%29 Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Opportunity-Opportunity %28Marketing%29 Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Opportunity-Opportunity %28Sales%29 Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Opportunity-Opportunity %28Sales%29 Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Opportunity-Opportunity %28Support%29 Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Opportunity-Opportunity %28Support%29 Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Opportunity-Opportunity Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Opportunity-Opportunity Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "OpportunityLineItem-Opportunity Product Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/OpportunityLineItem-Opportunity Product Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-09-29T03:09:04.000Z"
+        },
+        {
+          "fullName": "Order-Order Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Order-Order Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "OrderItem-Order Product Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/OrderItem-Order Product Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-09-29T03:09:04.000Z"
+        },
+        {
+          "fullName": "Payment-Payment Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Payment-Payment Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "PaymentAuthAdjustment-Payment Authorization Adjustment Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/PaymentAuthAdjustment-Payment Authorization Adjustment Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "PaymentAuthorization-Payment Authorization Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/PaymentAuthorization-Payment Authorization Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "PaymentGateway-Payment Gateway Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/PaymentGateway-Payment Gateway Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "PaymentGatewayLog-Payment Gateway Log Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/PaymentGatewayLog-Payment Gateway Log Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "PaymentGroup-Payment Group Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/PaymentGroup-Payment Group Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "PaymentLineInvoice-Payment Line Invoice Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/PaymentLineInvoice-Payment Line Invoice Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Pricebook2-Price Book Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Pricebook2-Price Book Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "PricebookEntry-Price Book Entry Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/PricebookEntry-Price Book Entry Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ProcessException-Process Exception Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ProcessException-Process Exception Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Product2-Product Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Product2-Product Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ProductConsumed-Product Consumed Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ProductConsumed-Product Consumed Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ProductConsumedState-Product Consumed State Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ProductConsumedState-Product Consumed State Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "ProductConsumptionSchedule-Product Consumption Schedule Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ProductConsumptionSchedule-Product Consumption Schedule Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ProductItem-Product Item Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ProductItem-Product Item Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ProductItemTransaction-Product Item Transaction Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ProductItemTransaction-Product Item Transaction Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ProductRequest-Product Request Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ProductRequest-Product Request Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ProductRequestLineItem-Product Request Line Item Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ProductRequestLineItem-Product Request Line Item Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ProductRequired-Product Required Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ProductRequired-Product Required Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ProductServiceCampaign-Product Service Campaign Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ProductServiceCampaign-Product Service Campaign Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "ProductServiceCampaignItem-Product Service Campaign Item Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ProductServiceCampaignItem-Product Service Campaign Item Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "ProductTransfer-Product Transfer Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ProductTransfer-Product Transfer Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ProductTransferState-Product Transfer State Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ProductTransferState-Product Transfer State Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "Purchase_Order__c-Purchase Order Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Purchase_Order__c-Purchase Order Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T20:03:14.000Z"
+        },
+        {
+          "fullName": "Purchase_Order_Line__c-Purchase Order Line Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Purchase_Order_Line__c-Purchase Order Line Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T20:03:14.000Z"
+        },
+        {
+          "fullName": "Purchase_Requisition__c-Purchase Requisition Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Purchase_Requisition__c-Purchase Requisition Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T20:03:14.000Z"
+        },
+        {
+          "fullName": "QuickText-Quick Text Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/QuickText-Quick Text Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "RecordsetFilterCriteria-Recordset Filter Criteria Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/RecordsetFilterCriteria-Recordset Filter Criteria Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "RecordsetFilterCriteriaRule-Recordset Filter Criteria Rule Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/RecordsetFilterCriteriaRule-Recordset Filter Criteria Rule Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "Refund-Refund Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Refund-Refund Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "RefundLinePayment-Refund Line Payment Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/RefundLinePayment-Refund Line Payment Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ReportAnomalyEventStore-Report Anomaly Event Store Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ReportAnomalyEventStore-Report Anomaly Event Store Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Requisition_Line__c-Requisition Line Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Requisition_Line__c-Requisition Line Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T20:03:15.000Z"
+        },
+        {
+          "fullName": "ResourceAbsence-Resource Absence Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ResourceAbsence-Resource Absence Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ResourcePreference-Resource Preference Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ResourcePreference-Resource Preference Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ReturnOrder-Return Order Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ReturnOrder-Return Order Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ReturnOrderItemAdjustment-Return Order Item Adjustment Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ReturnOrderItemAdjustment-Return Order Item Adjustment Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ReturnOrderItemTax-Return Order Item Tax Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ReturnOrderItemTax-Return Order Item Tax Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ReturnOrderLineItem-Return Order Line Item Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ReturnOrderLineItem-Return Order Line Item Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "SchedulingConstraint-Scheduling Constraint Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/SchedulingConstraint-Scheduling Constraint Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "SchedulingObjective-Scheduling Objective Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/SchedulingObjective-Scheduling Objective Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "SchedulingRule-Scheduling Rule Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/SchedulingRule-Scheduling Rule Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "SchedulingWorkspace-Scheduling Workspace Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/SchedulingWorkspace-Scheduling Workspace Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "SchedulingWorkspaceTerritory-Scheduling Workspace Territory Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/SchedulingWorkspaceTerritory-Scheduling Workspace Territory Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "Scorecard-Scorecard Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Scorecard-Scorecard Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ScorecardAssociation-Scorecard Association Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ScorecardAssociation-Scorecard Association Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ScorecardMetric-Scorecard Metric Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ScorecardMetric-Scorecard Metric Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Seller-Seller Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Seller-Seller Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ServiceAppointment-Service Appointment Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ServiceAppointment-Service Appointment Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ServiceAppointmentCapacityUsage-Service Appointment Capacity Usage Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ServiceAppointmentCapacityUsage-Service Appointment Capacity Usage Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "ServiceContract-Service Contract Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ServiceContract-Service Contract Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ServiceCrew-Service Crew Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ServiceCrew-Service Crew Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ServiceCrewMember-Service Crew Member Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ServiceCrewMember-Service Crew Member Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "ServiceResource-Service Resource Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ServiceResource-Service Resource Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ServiceResourceCapacity-Resource Capacity Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ServiceResourceCapacity-Resource Capacity Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ServiceResourcePreference-Service Resource Preference Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ServiceResourcePreference-Service Resource Preference Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "ServiceResourceSkill-Service Resource Skill Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ServiceResourceSkill-Service Resource Skill Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ServiceTerritory-Service Territory Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ServiceTerritory-Service Territory Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ServiceTerritoryMember-Service Territory Member Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ServiceTerritoryMember-Service Territory Member Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "SessionHijackingEventStore-Session Hijacking Event Store Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/SessionHijackingEventStore-Session Hijacking Event Store Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Shift-Shift Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Shift-Shift Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ShiftPattern-Shift Pattern Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ShiftPattern-Shift Pattern Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "ShiftPatternEntry-Shift Pattern Entry Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ShiftPatternEntry-Shift Pattern Entry Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "ShiftSchedulingOperation-Shift Scheduling Operation Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ShiftSchedulingOperation-Shift Scheduling Operation Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "ShiftTemplate-Shift Template Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ShiftTemplate-Shift Template Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "ShiftWorkTopic-Shift Work Topic Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ShiftWorkTopic-Shift Work Topic Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Shipment-Shipment Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Shipment-Shipment Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ShippingConfigurationSet-Shipping Configuration Set Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ShippingConfigurationSet-Shipping Configuration Set Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ShippingRateArea-Shipping Rate Area Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ShippingRateArea-Shipping Rate Area Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ShippingRateGroup-Shipping Rate Group Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ShippingRateGroup-Shipping Rate Group Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "SkillRequirement-Skill Requirement Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/SkillRequirement-Skill Requirement Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "SocialPersona-Social Persona Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/SocialPersona-Social Persona Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Solution-Solution Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Solution-Solution Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "StandardShippingRate-Standard Shipping Rate Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/StandardShippingRate-Standard Shipping Rate Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Supplier_Product__c-Supplier Product Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Supplier_Product__c-Supplier Product Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T20:03:15.000Z"
+        },
+        {
+          "fullName": "Supplier_Scorecard__c-Supplier Scorecard Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Supplier_Scorecard__c-Supplier Scorecard Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T20:03:15.000Z"
+        },
+        {
+          "fullName": "Swarm-Swarm Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Swarm-Swarm Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "SwarmMember-Swarm Member Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/SwarmMember-Swarm Member Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "Task-Task Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Task-Task Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "ThreatDetectionFeedback-Threat Detection Feedback Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/ThreatDetectionFeedback-Threat Detection Feedback Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "TimeSheet-Time Sheet Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/TimeSheet-Time Sheet Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "TimeSheetEntry-Time Sheet Entry Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/TimeSheetEntry-Time Sheet Entry Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "TimeSlot-Time Slot Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/TimeSlot-Time Slot Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "TravelMode-Travel Mode Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/TravelMode-Travel Mode Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "UniversalAnomalyEventStore-Universal Anomaly Event Store Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/UniversalAnomalyEventStore-Universal Anomaly Event Store Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "User-User Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/User-User Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-09-29T03:09:04.000Z"
+        },
+        {
+          "fullName": "UserAlt-User Profile Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/UserAlt-User Profile Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "UserProvAccount-User Provisioning Account Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/UserProvAccount-User Provisioning Account Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "UserProvisioningLog-User Provisioning Log Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/UserProvisioningLog-User Provisioning Log Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "UserProvisioningRequest-User Provisioning Request Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/UserProvisioningRequest-User Provisioning Request Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Waitlist-%5F%5FMISSING LABEL%5F%5F PropertyFile - val Waitlist not found in section StandardLayouts",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Waitlist-%5F%5FMISSING LABEL%5F%5F PropertyFile - val Waitlist not found in section StandardLayouts.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "Warehouse__c-Warehouse Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/Warehouse__c-Warehouse Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T20:03:15.000Z"
+        },
+        {
+          "fullName": "WarrantyTerm-Warranty Term Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/WarrantyTerm-Warranty Term Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "WebCart-Cart Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/WebCart-Cart Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "WebCartAdjustmentBasis-Cart Adjustment Basis Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/WebCartAdjustmentBasis-Cart Adjustment Basis Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "WebCartAdjustmentGroup-Cart Adjustment Group Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/WebCartAdjustmentGroup-Cart Adjustment Group Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "WebStore-Store Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/WebStore-Store Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "WorkCapacityAvailability-Work Capacity Availability Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/WorkCapacityAvailability-Work Capacity Availability Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "WorkCapacityLimit-Work Capacity Limit Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/WorkCapacityLimit-Work Capacity Limit Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "WorkCapacityUsage-Work Capacity Usage Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/WorkCapacityUsage-Work Capacity Usage Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "WorkOrder-Work Order Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/WorkOrder-Work Order Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "WorkOrderLineItem-Work Order Line Item Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/WorkOrderLineItem-Work Order Line Item Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "WorkPlan-Work Plan Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/WorkPlan-Work Plan Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "WorkPlanSelectionRule-Work Plan Selection Rule Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/WorkPlanSelectionRule-Work Plan Selection Rule Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:41.000Z"
+        },
+        {
+          "fullName": "WorkPlanTemplate-Work Plan Template Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/WorkPlanTemplate-Work Plan Template Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "WorkPlanTemplateEntry-Work Plan Template Entry Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/WorkPlanTemplateEntry-Work Plan Template Entry Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "WorkStep-Work Step Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/WorkStep-Work Step Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "WorkStepTemplate-Work Step Template Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/WorkStepTemplate-Work Step Template Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "WorkType-Work Type Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/WorkType-Work Type Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "WorkTypeGroup-Work Type Group Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/WorkTypeGroup-Work Type Group Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        },
+        {
+          "fullName": "WorkTypeGroupMember-Work Type Group Member Layout",
+          "manageableState": "unmanaged",
+          "fileName": "layouts/WorkTypeGroupMember-Work Type Group Member Layout.layout",
+          "lastModifiedByName": "Ayush Salve",
+          "lastModifiedDate": "2026-10-24T18:40:40.000Z"
+        }
+      ]
+    }
+  ]
+}

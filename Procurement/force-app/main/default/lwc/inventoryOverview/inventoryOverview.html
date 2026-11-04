@@ -1,0 +1,123 @@
+<template>
+    <lightning-card title="Inventory Overview" icon-name="standard:product_item">
+        <!-- Search and Filter Bar -->
+        <div slot="actions">
+            <lightning-button label="Refresh" icon-name="utility:refresh" onclick={handleRefresh}></lightning-button>
+        </div>
+        <div class="slds-var-m-around_medium">
+            <div class="slds-grid slds-wrap slds-gutters slds-var-m-bottom_medium">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <lightning-input
+                        type="search"
+                        label="Search by Product"
+                        placeholder="Type product name..."
+                        value={searchTerm}
+                        onchange={handleSearchChange}>
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <lightning-combobox
+                        label="Reorder Status"
+                        value={reorderStatusFilter}
+                        options={statusOptions}
+                        onchange={handleStatusFilterChange}>
+                    </lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <lightning-combobox
+                        label="Warehouse"
+                        value={warehouseFilter}
+                        options={warehouseOptions}
+                        onchange={handleWarehouseFilterChange}>
+                    </lightning-combobox>
+                </div>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="slds-grid slds-wrap slds-gutters slds-var-m-bottom_medium">
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4">
+                    <div class="slds-box slds-theme_default slds-text-align_center">
+                        <p class="slds-text-heading_large slds-text-color_success">{totalItems}</p>
+                        <p class="slds-text-body_small">Total Items</p>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4">
+                    <div class="slds-box slds-text-align_center">
+                        <p class="slds-text-heading_large slds-text-color_error">{reorderNeededCount}</p>
+                        <p class="slds-text-body_small">Reorder Needed</p>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4">
+                    <div class="slds-box slds-text-align_center">
+                        <p class="slds-text-heading_large" style="color: #ff9900;">{atRiskCount}</p>
+                        <p class="slds-text-body_small">At Risk</p>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4">
+                    <div class="slds-box slds-text-align_center">
+                        <p class="slds-text-heading_large slds-text-color_success">{healthyCount}</p>
+                        <p class="slds-text-body_small">Healthy</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading -->
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading inventory..." size="medium"></lightning-spinner>
+            </template>
+
+            <!-- Error -->
+            <template if:true={error}>
+                <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+                    <span class="slds-assistive-text">error</span>
+                    <p>{error}</p>
+                </div>
+            </template>
+
+            <!-- Empty State -->
+            <template if:true={isEmpty}>
+                <div class="slds-illustration slds-illustration_small slds-var-m-around_medium">
+                    <div class="slds-text-longform">
+                        <p class="slds-text-heading_medium">No inventory records found</p>
+                        <p class="slds-text-body_regular">Try adjusting your search or filters.</p>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Data Table -->
+            <template if:true={hasData}>
+                <lightning-datatable
+                    key-field="inventoryId"
+                    data={paginatedData}
+                    columns={columns}
+                    hide-checkbox-column
+                    sorted-by={sortedBy}
+                    sorted-direction={sortedDirection}
+                    onsort={handleSort}
+                    onrowaction={handleRowAction}
+                    row-number-offset={rowNumberOffset}>
+                </lightning-datatable>
+
+                <!-- Pagination -->
+                <div class="slds-grid slds-grid_align-center slds-var-m-top_medium">
+                    <lightning-button
+                        label="Previous"
+                        icon-name="utility:chevronleft"
+                        disabled={isFirstPage}
+                        onclick={handlePreviousPage}>
+                    </lightning-button>
+                    <span class="slds-var-m-horizontal_medium slds-align-middle">
+                        Page {currentPage} of {totalPages} ({totalItems} records)
+                    </span>
+                    <lightning-button
+                        label="Next"
+                        icon-name="utility:chevronright"
+                        icon-position="right"
+                        disabled={isLastPage}
+                        onclick={handleNextPage}>
+                    </lightning-button>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
