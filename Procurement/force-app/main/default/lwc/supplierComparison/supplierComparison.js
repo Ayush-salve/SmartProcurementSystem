@@ -1,5 +1,4 @@
 import { LightningElement, api, track } from 'lwc';
-import { fireEvent } from 'c/pubsub';
 import getSupplierOffersForProduct from '@salesforce/apex/SupplierComparisonService.getSupplierOffersForProduct';
 
 export default class SupplierComparison extends LightningElement {

@@ -1,0 +1,60 @@
+
+.stat-card {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 12px;
+    background: #f3f3f3;
+    border-left: 5px solid #747474;
+}
+
+.stat-card p {
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+}
+
+.stat-card h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+.reorder {
+    border-left-color: #ba0517;
+    background: #fff1f0;
+}
+
+.risk {
+    border-left-color: #fe9339;
+    background: #fff7ed;
+}
+
+.healthy {
+    border-left-color: #2e844a;
+    background: #effbef;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.empty-state {
+    padding: 40px 15px;
+    text-align: center;
+    color: #706e6b;
+}
+
+.empty-state h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 12px;
+}
+
+.empty-state p {
+    margin-top: 6px;
+}

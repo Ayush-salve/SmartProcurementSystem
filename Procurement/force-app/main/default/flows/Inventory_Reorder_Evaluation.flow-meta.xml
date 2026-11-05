@@ -5,13 +5,16 @@
     <environments>Default</environments>
     <interviewLabel>Inventory Reorder Evaluation {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Inventory Reorder Evaluation</label>
+
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
             <stringValue>LightningFlowBuilder</stringValue>
         </value>
     </processMetadataValues>
-    <processType>RecordBeforeSave</processType>
+
+    <processType>AutoLaunchedFlow</processType>
+
     <start>
         <locationX>176</locationX>
         <locationY>48</locationY>
@@ -44,25 +47,30 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
+
     <status>Active</status>
+
     <formulas>
         <name>frmAvailable</name>
         <dataType>Number</dataType>
         <expression>IF(ISNULL({!$Record.On_Hand__c}), 0, {!$Record.On_Hand__c}) - IF(ISNULL({!$Record.Reserved__c}), 0, {!$Record.Reserved__c})</expression>
         <scale>2</scale>
     </formulas>
+
     <formulas>
         <name>frmReorderPt</name>
         <dataType>Number</dataType>
         <expression>IF(ISNULL({!$Record.Reorder_Point__c}), 0, {!$Record.Reorder_Point__c})</expression>
         <scale>2</scale>
     </formulas>
+
     <formulas>
         <name>frmAtRiskThreshold</name>
         <dataType>Number</dataType>
         <expression>IF(ISNULL({!$Record.Reorder_Point__c}), 0, {!$Record.Reorder_Point__c}) * 1.5</expression>
         <scale>2</scale>
     </formulas>
+
     <decisions>
         <name>Decide_Reorder_Status</name>
         <label>Decide Reorder Status</label>
@@ -72,6 +80,7 @@
             <targetReference>Set_Healthy</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Healthy</defaultConnectorLabel>
+
         <rules>
             <name>Is_Reorder_Needed</name>
             <conditionLogic>and</conditionLogic>
@@ -87,6 +96,7 @@
             </connector>
             <label>Reorder Needed (zero or negative stock)</label>
         </rules>
+
         <rules>
             <name>Below_Reorder_Point</name>
             <conditionLogic>and</conditionLogic>
@@ -102,6 +112,7 @@
             </connector>
             <label>At or Below Reorder Point</label>
         </rules>
+
         <rules>
             <name>Is_At_Risk</name>
             <conditionLogic>and</conditionLogic>
@@ -118,6 +129,7 @@
             <label>At Risk (below 1.5x reorder point)</label>
         </rules>
     </decisions>
+
     <assignments>
         <name>Set_Reorder_Needed</name>
         <label>Set Reorder Needed</label>
@@ -138,6 +150,7 @@
             </value>
         </assignmentItems>
     </assignments>
+
     <assignments>
         <name>Set_Reorder_Needed2</name>
         <label>Set Reorder Needed (at point)</label>
@@ -158,6 +171,7 @@
             </value>
         </assignmentItems>
     </assignments>
+
     <assignments>
         <name>Set_At_Risk</name>
         <label>Set At Risk</label>
@@ -178,6 +192,7 @@
             </value>
         </assignmentItems>
     </assignments>
+
     <assignments>
         <name>Set_Healthy</name>
         <label>Set Healthy</label>

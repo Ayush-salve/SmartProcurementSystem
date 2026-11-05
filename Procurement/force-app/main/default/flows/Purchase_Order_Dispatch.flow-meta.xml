@@ -5,13 +5,16 @@
     <environments>Default</environments>
     <interviewLabel>Purchase Order Dispatch {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Purchase Order Dispatch</label>
+
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
             <stringValue>LightningFlowBuilder</stringValue>
         </value>
     </processMetadataValues>
-    <processType>RecordBeforeSave</processType>
+
+    <processType>AutoLaunchedFlow</processType>
+
     <start>
         <locationX>176</locationX>
         <locationY>48</locationY>
@@ -37,7 +40,9 @@
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
+
     <status>Active</status>
+
     <assignments>
         <name>Set_Sent_At</name>
         <label>Set Sent At</label>

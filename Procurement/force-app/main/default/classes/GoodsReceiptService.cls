@@ -1,5 +1,19 @@
 public with sharing class GoodsReceiptService {
 
+    public class PostReceiptInput {
+        @InvocableVariable(label='Receipt Id' required=true)
+        public String receiptId;
+    }
+
+    @InvocableMethod(label='Post Goods Receipt' description='Posts a goods receipt and updates inventory. Called from flows.')
+    public static void postGoodsReceiptFromFlow(List<PostReceiptInput> inputs) {
+        for (PostReceiptInput input : inputs) {
+            if (String.isNotBlank(input.receiptId)) {
+                postGoodsReceipt(input.receiptId);
+            }
+        }
+    }
+
     public class PurchaseOrderLineDetail {
         @AuraEnabled public Id polId;
         @AuraEnabled public String productName;
