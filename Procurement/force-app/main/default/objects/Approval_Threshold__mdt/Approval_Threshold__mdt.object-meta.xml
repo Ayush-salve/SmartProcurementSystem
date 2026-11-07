@@ -34,4 +34,20 @@
         <scale>0</scale>
         <type>Number</type>
     </fields>
+    <fields>
+        <fullName>Approval_Process__c</fullName>
+        <description>Developer name of the Purchase Order approval process that handles this band (used by the Purchase_Order_Approval flow).</description>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Approval Process</label>
+        <length>80</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Notification_Queue__c</fullName>
+        <description>Developer name of the queue notified when an order in this band is submitted for approval.</description>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Notification Queue</label>
+        <length>80</length>
+        <type>Text</type>
+    </fields>
 </CustomObject>

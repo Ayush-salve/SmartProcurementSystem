@@ -12,6 +12,89 @@ public with sharing class SupplierPerformanceService {
         @AuraEnabled public Date latestPeriodEnd;
     }
 
+    public class ReviewRequest {
+        @InvocableVariable(label='Review Interval (days)' description='A supplier is due when its latest scorecard period ended at least this many days ago. Defaults to 90.')
+        public Integer reviewIntervalDays;
+        @InvocableVariable(label='Minimum Acceptable Score' description='A supplier is due when its latest overall score is below this value. Defaults to 60.')
+        public Decimal minimumScore;
+        @InvocableVariable(label='Task Subject Prefix' description='Suppliers whose scorecard already has an open or recent task whose subject starts with this prefix are skipped.')
+        public String taskSubjectPrefix;
+        @InvocableVariable(label='Dedupe Window (days)' description='A review task created within this many days counts as recent. Defaults to 30.')
+        public Integer dedupeDays;
+    }
+
+    public class ReviewResult {
+        @InvocableVariable(label='Due Scorecards' description='The latest scorecard of every supplier that is due for review.')
+        public List<Supplier_Scorecard__c> dueScorecards;
+        @InvocableVariable(label='Due Count')
+        public Integer dueCount;
+    }
+
+    // A supplier is due when its latest scorecard is stale, High risk, or scores below the minimum.
+    @InvocableMethod(
+        label='Find Suppliers Due For Review'
+        description='Returns the latest scorecard of each supplier that is stale, High risk, or below the minimum score.'
+    )
+    public static List<ReviewResult> findSuppliersDueForReview(List<ReviewRequest> requests) {
+        List<ReviewResult> results = new List<ReviewResult>();
+        for (ReviewRequest request : requests) {
+            Integer intervalDays = request.reviewIntervalDays != null && request.reviewIntervalDays > 0 ? request.reviewIntervalDays : 90;
+            Decimal minScore = request.minimumScore != null ? request.minimumScore : 60;
+            Date staleBefore = Date.today().addDays(-intervalDays);
+
+            Map<Id, Supplier_Scorecard__c> latestBySupplier = new Map<Id, Supplier_Scorecard__c>();
+            for (Supplier_Scorecard__c card : [
+                SELECT Id, Name, OwnerId, Supplier__c, Supplier__r.Name, Period_End__c,
+                       Overall_Score__c, Risk_Level__c, Calculated_At__c
+                FROM Supplier_Scorecard__c
+                WHERE Supplier__c != null
+                WITH USER_MODE
+                ORDER BY Supplier__c, Period_End__c DESC NULLS LAST, Calculated_At__c DESC NULLS LAST
+                LIMIT 2000
+            ]) {
+                if (!latestBySupplier.containsKey(card.Supplier__c)) {
+                    latestBySupplier.put(card.Supplier__c, card);
+                }
+            }
+
+            Set<Id> alreadyTasked = findAlreadyTasked(latestBySupplier.values(), request);
+
+            ReviewResult result = new ReviewResult();
+            result.dueScorecards = new List<Supplier_Scorecard__c>();
+            for (Supplier_Scorecard__c card : latestBySupplier.values()) {
+                Boolean stale = card.Period_End__c == null || card.Period_End__c <= staleBefore;
+                Boolean highRisk = card.Risk_Level__c == 'High';
+                Boolean lowScore = card.Overall_Score__c != null && card.Overall_Score__c < minScore;
+                if ((stale || highRisk || lowScore) && !alreadyTasked.contains(card.Id)) {
+                    result.dueScorecards.add(card);
+                }
+            }
+            result.dueCount = result.dueScorecards.size();
+            results.add(result);
+        }
+        return results;
+    }
+
+    // Scorecards that already have an open task, or one created inside the dedupe window, with the review subject prefix.
+    private static Set<Id> findAlreadyTasked(List<Supplier_Scorecard__c> cards, ReviewRequest request) {
+        Set<Id> tasked = new Set<Id>();
+        if (String.isBlank(request.taskSubjectPrefix) || cards.isEmpty()) {
+            return tasked;
+        }
+        Integer windowDays = request.dedupeDays != null && request.dedupeDays > 0 ? request.dedupeDays : 30;
+        Datetime cutoff = Datetime.now().addDays(-windowDays);
+        String pattern = String.escapeSingleQuotes(request.taskSubjectPrefix) + '%';
+        Set<Id> cardIds = new Map<Id, Supplier_Scorecard__c>(cards).keySet();
+        for (Task t : [
+            SELECT WhatId FROM Task
+            WHERE WhatId IN :cardIds AND Subject LIKE :pattern AND (IsClosed = false OR CreatedDate >= :cutoff)
+            WITH USER_MODE
+        ]) {
+            tasked.add(t.WhatId);
+        }
+        return tasked;
+    }
+
     @AuraEnabled(cacheable=true)
     public static List<Supplier_Scorecard__c> getSupplierScorecards(Id supplierId) {
         try {
@@ -29,7 +112,7 @@ public with sharing class SupplierPerformanceService {
                 LIMIT 24
             ];
         } catch (Exception e) {
-            throw new AuraHandledException('Error loading supplier scorecards: ' + e.getMessage());
+            throw auraError('Error loading supplier scorecards: ' + e.getMessage());
         }
     }
 
@@ -97,7 +180,14 @@ public with sharing class SupplierPerformanceService {
             return result;
 
         } catch (Exception e) {
-            throw new AuraHandledException('Error loading supplier rankings: ' + e.getMessage());
+            throw auraError('Error loading supplier rankings: ' + e.getMessage());
         }
+    }
+
+    // AuraHandledException hides its message from callers unless setMessage is used.
+    private static AuraHandledException auraError(String message) {
+        AuraHandledException ex = new AuraHandledException(message);
+        ex.setMessage(message);
+        return ex;
     }
 }

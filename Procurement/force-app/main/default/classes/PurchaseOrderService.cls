@@ -10,6 +10,141 @@ public with sharing class PurchaseOrderService {
     private static final Set<String> EDITABLE_STATUSES = new Set<String>{'Draft', 'Pending Approval'};
     private static final Set<String> DISPATCHABLE_STATUSES = new Set<String>{'Approved'};
 
+    public static final String OP_PREPARE_APPROVAL = 'PREPARE_APPROVAL';
+    public static final String OP_DISPATCH = 'DISPATCH';
+
+    public class OrderRequest {
+        @InvocableVariable(label='Purchase Order Id' required=true)
+        public Id purchaseOrderId;
+        @InvocableVariable(label='Operation (PREPARE_APPROVAL or DISPATCH)' required=true)
+        public String operation;
+        @InvocableVariable(label='Prior Status')
+        public String priorStatus;
+    }
+
+    public class OrderResult {
+        @InvocableVariable(label='Purchase Order Id')
+        public Id purchaseOrderId;
+        @InvocableVariable(label='Is Success')
+        public Boolean isSuccess;
+        @InvocableVariable(label='Message')
+        public String message;
+        @InvocableVariable(label='Total Amount')
+        public Decimal totalAmount;
+    }
+
+    // PREPARE_APPROVAL validates the order and recalculates Subtotal from its lines so approval routing
+    // uses an authoritative amount. DISPATCH validates an approved order and queues the external dispatch.
+    @InvocableMethod(
+        label='Process Purchase Order'
+        description='Validates purchase orders for approval or dispatch. Returns a result per order instead of throwing; dispatch is performed asynchronously.'
+    )
+    public static List<OrderResult> processFromFlow(List<OrderRequest> requests) {
+        Set<Id> ids = new Set<Id>();
+        for (OrderRequest r : requests) {
+            if (r.purchaseOrderId != null) ids.add(r.purchaseOrderId);
+        }
+        Map<Id, Purchase_Order__c> poMap = new Map<Id, Purchase_Order__c>([
+            SELECT Id, Status__c, Supplier__c, Subtotal__c, Tax_Amount__c, Shipping_Amount__c,
+                   External_Order_Id__c, Idempotency_Key__c,
+                   (SELECT Id, Product__c, Quantity_Ordered__c, Unit_Price__c, Line_Total__c, Line_Status__c
+                    FROM Purchase_Order_Lines__r WHERE Line_Status__c != 'Cancelled')
+            FROM Purchase_Order__c WHERE Id IN :ids WITH USER_MODE
+        ]);
+
+        List<OrderResult> results = new List<OrderResult>();
+        Map<Id, Purchase_Order__c> toUpdate = new Map<Id, Purchase_Order__c>();
+        List<Id> toDispatch = new List<Id>();
+
+        for (OrderRequest r : requests) {
+            OrderResult res = new OrderResult();
+            res.purchaseOrderId = r.purchaseOrderId;
+            res.isSuccess = false;
+            Purchase_Order__c po = poMap.get(r.purchaseOrderId);
+            if (po == null) {
+                res.message = 'Purchase order not found or not accessible.';
+                results.add(res);
+                continue;
+            }
+            Decimal subtotal = 0;
+            for (Purchase_Order_Line__c line : po.Purchase_Order_Lines__r) {
+                subtotal += line.Line_Total__c == null ? 0 : line.Line_Total__c;
+            }
+            res.totalAmount = subtotal + nz(po.Tax_Amount__c) + nz(po.Shipping_Amount__c);
+
+            String error = validateOrderContent(po);
+            if (error == null && r.operation == OP_DISPATCH) {
+                error = validateDispatch(po, r.priorStatus);
+            } else if (error == null && r.operation != OP_PREPARE_APPROVAL) {
+                error = 'Unsupported operation: ' + r.operation;
+            }
+
+            if (error != null) {
+                res.message = error;
+            } else {
+                res.isSuccess = true;
+                res.message = 'Validation passed.';
+                Purchase_Order__c upd = toUpdate.containsKey(po.Id) ? toUpdate.get(po.Id) : new Purchase_Order__c(Id = po.Id);
+                if (po.Subtotal__c != subtotal) upd.Subtotal__c = subtotal;
+                if (r.operation == OP_DISPATCH) {
+                    if (String.isBlank(po.Idempotency_Key__c)) upd.Idempotency_Key__c = 'PO-' + po.Id;
+                    upd.Last_Sync_Status__c = 'Pending';
+                    toDispatch.add(po.Id);
+                    res.message = 'Dispatch queued.';
+                }
+                toUpdate.put(po.Id, upd);
+            }
+            results.add(res);
+        }
+
+        if (!toUpdate.isEmpty()) {
+            // System-maintained total and integration fields; read access to the order was verified above.
+            update toUpdate.values();
+        }
+        if (!toDispatch.isEmpty()) {
+            System.enqueueJob(new PurchaseOrderDispatchJob(toDispatch));
+        }
+        return results;
+    }
+
+    private static String validateOrderContent(Purchase_Order__c po) {
+        if (po.Supplier__c == null) {
+            return 'A supplier is required on the purchase order.';
+        }
+        if (po.Purchase_Order_Lines__r.isEmpty()) {
+            return 'The purchase order has no active lines.';
+        }
+        for (Purchase_Order_Line__c line : po.Purchase_Order_Lines__r) {
+            if (line.Product__c == null) {
+                return 'Every purchase order line must have a product.';
+            }
+            if (line.Quantity_Ordered__c == null || line.Quantity_Ordered__c <= 0) {
+                return 'Every purchase order line must have a quantity greater than zero.';
+            }
+            if (line.Unit_Price__c == null || line.Unit_Price__c < 0) {
+                return 'Every purchase order line must have a valid unit price.';
+            }
+        }
+        return null;
+    }
+
+    private static String validateDispatch(Purchase_Order__c po, String priorStatus) {
+        if (po.Status__c != 'Sent') {
+            return 'Only a purchase order in Sent status can be dispatched. Current status: ' + po.Status__c;
+        }
+        if (priorStatus != 'Approved') {
+            return 'Only approved purchase orders can be dispatched.';
+        }
+        if (String.isNotBlank(po.External_Order_Id__c)) {
+            return 'This purchase order has already been dispatched.';
+        }
+        return null;
+    }
+
+    private static Decimal nz(Decimal value) {
+        return value == null ? 0 : value;
+    }
+
     @AuraEnabled(cacheable=true)
     public static PurchaseOrderWrapper getPurchaseOrderWithLines(Id poId) {
         try {
@@ -33,7 +168,7 @@ public with sharing class PurchaseOrderService {
             w.canDispatch = DISPATCHABLE_STATUSES.contains(po.Status__c);
             return w;
         } catch (Exception e) {
-            throw new AuraHandledException('Error loading purchase order: ' + e.getMessage());
+            throw auraError('Error loading purchase order: ' + e.getMessage());
         }
     }
 
@@ -51,7 +186,7 @@ public with sharing class PurchaseOrderService {
             } else {
                 Purchase_Order__c existing = [SELECT Status__c FROM Purchase_Order__c WHERE Id = :po.Id LIMIT 1];
                 if (!EDITABLE_STATUSES.contains(existing.Status__c)) {
-                    throw new AuraHandledException('Cannot edit a purchase order with status: ' + existing.Status__c);
+                    throw auraError('Cannot edit a purchase order with status: ' + existing.Status__c);
                 }
                 update po;
             }
@@ -81,7 +216,7 @@ public with sharing class PurchaseOrderService {
             throw e;
         } catch (Exception e) {
             Database.rollback(sp);
-            throw new AuraHandledException('Error saving purchase order: ' + e.getMessage());
+            throw auraError('Error saving purchase order: ' + e.getMessage());
         }
     }
 
@@ -94,7 +229,7 @@ public with sharing class PurchaseOrderService {
                 FROM Purchase_Requisition__c WHERE Id = :requisitionId LIMIT 1
             ];
             if (req.Status__c != 'Approved') {
-                throw new AuraHandledException('Only approved requisitions can be converted to purchase orders.');
+                throw auraError('Only approved requisitions can be converted to purchase orders.');
             }
             List<Requisition_Line__c> reqLines = [
                 SELECT Id, Product__c, Requested_Qty__c, Approved_Qty__c, Estimated_Unit_Price__c,
@@ -131,7 +266,7 @@ public with sharing class PurchaseOrderService {
             throw e;
         } catch (Exception e) {
             Database.rollback(sp);
-            throw new AuraHandledException('Error creating PO from requisition: ' + e.getMessage());
+            throw auraError('Error creating PO from requisition: ' + e.getMessage());
         }
     }
 
@@ -140,7 +275,7 @@ public with sharing class PurchaseOrderService {
         try {
             Purchase_Order__c po = [SELECT Id, Status__c FROM Purchase_Order__c WHERE Id = :poId LIMIT 1];
             if (!DISPATCHABLE_STATUSES.contains(po.Status__c)) {
-                throw new AuraHandledException('Purchase order must be Approved before dispatching. Current status: ' + po.Status__c);
+                throw auraError('Purchase order must be Approved before dispatching. Current status: ' + po.Status__c);
             }
             po.Status__c = 'Sent';
             po.Sent_At__c = Datetime.now();
@@ -148,7 +283,7 @@ public with sharing class PurchaseOrderService {
         } catch (AuraHandledException e) {
             throw e;
         } catch (Exception e) {
-            throw new AuraHandledException('Error dispatching purchase order: ' + e.getMessage());
+            throw auraError('Error dispatching purchase order: ' + e.getMessage());
         }
     }
 
@@ -160,7 +295,14 @@ public with sharing class PurchaseOrderService {
                            Order_Date__c, Expected_Delivery__c, Total_Amount__c
                     FROM Purchase_Order__c ORDER BY CreatedDate DESC LIMIT :lim];
         } catch (Exception e) {
-            throw new AuraHandledException('Error loading purchase orders: ' + e.getMessage());
+            throw auraError('Error loading purchase orders: ' + e.getMessage());
         }
+    }
+
+    // AuraHandledException hides its message from callers unless setMessage is used.
+    private static AuraHandledException auraError(String message) {
+        AuraHandledException ex = new AuraHandledException(message);
+        ex.setMessage(message);
+        return ex;
     }
 }

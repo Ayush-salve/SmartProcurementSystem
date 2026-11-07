@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>68.0</apiVersion>
-    <description>Autolaunched flow that invokes the GoodsReceiptService to post a receipt and update inventory. Call from a button or parent flow.</description>
+    <description>Autolaunched flow that posts a goods receipt. Validates the receipt and its lines, then calls GoodsReceiptService, which atomically updates stock, creates inventory transactions, updates purchase order lines and status, and marks the receipt Posted (all-or-nothing). Posted receipts are rejected to prevent duplicate posting.</description>
     <environments>Default</environments>
     <interviewLabel>Goods Receipt Posting {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Goods Receipt Posting</label>
@@ -11,74 +11,431 @@
             <stringValue>LightningFlowBuilder</stringValue>
         </value>
     </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <start>
-        <locationX>176</locationX>
-        <locationY>48</locationY>
-        <connector>
-            <targetReference>Post_Goods_Receipt</targetReference>
-        </connector>
-    </start>
-    <status>Active</status>
-    <variables>
-        <name>receiptId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-        <description>The Id of the Goods Receipt to post.</description>
-    </variables>
-    <variables>
-        <name>errorMessage</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>true</isOutput>
-    </variables>
     <actionCalls>
-        <name>Post_Goods_Receipt</name>
-        <label>Post Goods Receipt</label>
+        <name>Post_Receipt_Atomically</name>
+        <description>Single Apex transaction with savepoint rollback: stock, transactions, PO lines, PO status and receipt status.</description>
+        <label>Post Receipt Atomically</label>
         <locationX>176</locationX>
-        <locationY>158</locationY>
+        <locationY>300</locationY>
         <actionName>GoodsReceiptService</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Receipt_Posted_Successfully</targetReference>
+            <targetReference>Post_Succeeded</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>Handle_Post_Error</targetReference>
+            <targetReference>Set_Fault_Result</targetReference>
         </faultConnector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>receiptId</name>
             <value>
                 <elementReference>receiptId</elementReference>
             </value>
         </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <assignments>
-        <name>Receipt_Posted_Successfully</name>
-        <label>Receipt Posted Successfully</label>
-        <locationX>176</locationX>
-        <locationY>278</locationY>
+        <name>Set_Success_Result</name>
+        <label>Set Success Result</label>
+        <locationX>776</locationX>
+        <locationY>300</locationY>
         <assignmentItems>
-            <assignToReference>errorMessage</assignToReference>
+            <assignToReference>isSuccess</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue></stringValue>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>resultMessage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Post_Receipt_Atomically.message</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>purchaseOrderStatus</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Post_Receipt_Atomically.purchaseOrderStatus</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>unitsAccepted</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Post_Receipt_Atomically.unitsAccepted</elementReference>
             </value>
         </assignmentItems>
     </assignments>
     <assignments>
-        <name>Handle_Post_Error</name>
-        <label>Handle Post Error</label>
-        <locationX>352</locationX>
-        <locationY>278</locationY>
+        <name>Set_Failure_Result</name>
+        <label>Set Failure Result</label>
+        <locationX>1076</locationX>
+        <locationY>300</locationY>
         <assignmentItems>
-            <assignToReference>errorMessage</assignToReference>
+            <assignToReference>isSuccess</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>resultMessage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Post_Receipt_Atomically.message</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Fault_Result</name>
+        <label>Set Fault Result</label>
+        <locationX>176</locationX>
+        <locationY>450</locationY>
+        <assignmentItems>
+            <assignToReference>isSuccess</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>resultMessage</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>$Flow.FaultMessage</elementReference>
             </value>
         </assignmentItems>
     </assignments>
+    <assignments>
+        <name>Set_Not_Found</name>
+        <label>Set Not Found</label>
+        <locationX>476</locationX>
+        <locationY>450</locationY>
+        <assignmentItems>
+            <assignToReference>isSuccess</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>resultMessage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Goods receipt not found.</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Already_Posted</name>
+        <label>Set Already Posted</label>
+        <locationX>776</locationX>
+        <locationY>450</locationY>
+        <assignmentItems>
+            <assignToReference>isSuccess</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>resultMessage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>This receipt has already been posted.</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Rejected</name>
+        <label>Set Rejected</label>
+        <locationX>1076</locationX>
+        <locationY>450</locationY>
+        <assignmentItems>
+            <assignToReference>isSuccess</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>resultMessage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>A rejected receipt cannot be posted.</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_No_PO</name>
+        <label>Set No Purchase Order</label>
+        <locationX>176</locationX>
+        <locationY>600</locationY>
+        <assignmentItems>
+            <assignToReference>isSuccess</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>resultMessage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>The receipt is not linked to a purchase order.</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_No_Lines</name>
+        <label>Set No Lines</label>
+        <locationX>476</locationX>
+        <locationY>600</locationY>
+        <assignmentItems>
+            <assignToReference>isSuccess</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>resultMessage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>The receipt has no lines to post.</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Check_Receipt</name>
+        <label>Check Receipt</label>
+        <locationX>476</locationX>
+        <locationY>150</locationY>
+        <defaultConnector>
+            <targetReference>Get_Receipt_Line</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Receipt Can Be Posted</defaultConnectorLabel>
+        <rules>
+            <name>Receipt_Not_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Receipt</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Not_Found</targetReference>
+            </connector>
+            <label>Receipt Not Found</label>
+        </rules>
+        <rules>
+            <name>Already_Posted</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Receipt.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Posted</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Already_Posted</targetReference>
+            </connector>
+            <label>Already Posted</label>
+        </rules>
+        <rules>
+            <name>Receipt_Rejected</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Receipt.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Rejected</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Rejected</targetReference>
+            </connector>
+            <label>Receipt Rejected</label>
+        </rules>
+        <rules>
+            <name>Missing_Purchase_Order</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Receipt.Purchase_Order__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_No_PO</targetReference>
+            </connector>
+            <label>No Purchase Order</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Has_Lines</name>
+        <label>Receipt Has Lines?</label>
+        <locationX>1076</locationX>
+        <locationY>150</locationY>
+        <defaultConnector>
+            <targetReference>Post_Receipt_Atomically</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Has Lines</defaultConnectorLabel>
+        <rules>
+            <name>No_Lines</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Receipt_Line</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_No_Lines</targetReference>
+            </connector>
+            <label>No Lines</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Post_Succeeded</name>
+        <label>Post Succeeded?</label>
+        <locationX>476</locationX>
+        <locationY>300</locationY>
+        <defaultConnector>
+            <targetReference>Set_Failure_Result</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Posting Failed</defaultConnectorLabel>
+        <rules>
+            <name>Posted_OK</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Post_Receipt_Atomically.isSuccess</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Success_Result</targetReference>
+            </connector>
+            <label>Posted</label>
+        </rules>
+    </decisions>
+    <recordLookups>
+        <name>Get_Receipt</name>
+        <label>Get Receipt</label>
+        <locationX>176</locationX>
+        <locationY>150</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_Receipt</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Set_Fault_Result</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>receiptId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Goods_Receipt__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Receipt_Line</name>
+        <description>Existence check only; GoodsReceiptService validates quantities and reasons authoritatively.</description>
+        <label>Get Receipt Line</label>
+        <locationX>776</locationX>
+        <locationY>150</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Has_Lines</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Set_Fault_Result</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Goods_Receipt__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>receiptId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Goods_Receipt_Line__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <variables>
+        <name>receiptId</name>
+        <description>The Id of the Goods Receipt to post.</description>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>isSuccess</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>resultMessage</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>purchaseOrderStatus</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>unitsAccepted</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>2</scale>
+    </variables>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Receipt</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
 </Flow>

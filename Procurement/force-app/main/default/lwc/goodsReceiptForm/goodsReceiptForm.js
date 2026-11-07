@@ -1,10 +1,15 @@
 import { LightningElement, api, track } from 'lwc';
+import { FlowAttributeChangeEvent, FlowNavigationNextEvent, FlowNavigationFinishEvent } from 'lightning/flowSupport';
 import getPurchaseOrderForReceipt from '@salesforce/apex/GoodsReceiptService.getPurchaseOrderForReceipt';
 import saveGoodsReceipt from '@salesforce/apex/GoodsReceiptService.saveGoodsReceipt';
 import postGoodsReceipt from '@salesforce/apex/GoodsReceiptService.postGoodsReceipt';
 
 export default class GoodsReceiptForm extends LightningElement {
     @api recordId;
+    // Screen Flow support: when true, "Post Receipt" saves the receipt and hands it to the flow, which posts it.
+    @api postingHandledByFlow = false;
+    @api availableActions = [];
+    @api receiptId;
     @track selectedPoId = null;
     @track poSummary = null;
     @track receiptLines = [];
@@ -70,6 +75,26 @@ export default class GoodsReceiptForm extends LightningElement {
                 this.errorMessage = err.body ? err.body.message : 'Error loading PO lines';
                 this.isLoading = false;
             });
+    }
+
+    @api
+    validate() {
+        if (this.postingHandledByFlow && !this.savedReceiptId) {
+            return { isValid: false, errorMessage: 'Use Post Receipt to save the receipt before continuing.' };
+        }
+        return { isValid: true };
+    }
+
+    notifyFlowOfReceipt(receiptId) {
+        this.dispatchEvent(new FlowAttributeChangeEvent('receiptId', receiptId));
+    }
+
+    navigateFlowForward() {
+        if (this.availableActions.includes('NEXT')) {
+            this.dispatchEvent(new FlowNavigationNextEvent());
+        } else if (this.availableActions.includes('FINISH')) {
+            this.dispatchEvent(new FlowNavigationFinishEvent());
+        }
     }
 
     handleReceiptDateChange(event) { this.receiptDate = event.target.value; }
@@ -151,6 +176,7 @@ export default class GoodsReceiptForm extends LightningElement {
         saveGoodsReceipt({ receiptJson: JSON.stringify(receipt), linesJson: JSON.stringify(lines) })
             .then(id => {
                 this.savedReceiptId = id;
+                this.notifyFlowOfReceipt(id);
                 this.successMessage = 'Receipt saved. Ready to post.';
                 this.isSaving = false;
             })
@@ -165,6 +191,21 @@ export default class GoodsReceiptForm extends LightningElement {
         this.successMessage = null;
         if (!this.validateLines()) return;
         this.isSaving = true;
+        if (this.postingHandledByFlow) {
+            const { receipt, lines } = this.buildReceiptAndLines();
+            saveGoodsReceipt({ receiptJson: JSON.stringify(receipt), linesJson: JSON.stringify(lines) })
+                .then(id => {
+                    this.savedReceiptId = id;
+                    this.notifyFlowOfReceipt(id);
+                    this.isSaving = false;
+                    this.navigateFlowForward();
+                })
+                .catch(err => {
+                    this.errorMessage = err.body ? err.body.message : 'Error saving receipt';
+                    this.isSaving = false;
+                });
+            return;
+        }
         const saveAndPost = () => {
             const { receipt, lines } = this.buildReceiptAndLines();
             return saveGoodsReceipt({ receiptJson: JSON.stringify(receipt), linesJson: JSON.stringify(lines) })

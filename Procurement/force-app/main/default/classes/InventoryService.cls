@@ -1,5 +1,103 @@
 public with sharing class InventoryService {
 
+    private static final Decimal AT_RISK_FACTOR = 1.2;
+
+    // Single source of truth for reorder classification (used by LWC, batch evaluation and the flow).
+    public static String classifyReorderStatus(Decimal onHand, Decimal reserved, Decimal reorderPoint) {
+        Decimal available = (onHand == null ? 0 : onHand) - (reserved == null ? 0 : reserved);
+        Decimal reorderPt = reorderPoint == null ? 0 : reorderPoint;
+        if (available <= reorderPt) {
+            return 'Reorder Needed';
+        }
+        if (reorderPt > 0 && available <= reorderPt * AT_RISK_FACTOR) {
+            return 'At Risk';
+        }
+        return 'Healthy';
+    }
+
+    public class ReorderEvaluationRequest {
+        @InvocableVariable(label='Inventory Id' required=true)
+        public Id inventoryId;
+    }
+
+    public class ReorderEvaluationResult {
+        @InvocableVariable(label='Inventory Id')
+        public Id inventoryId;
+        @InvocableVariable(label='Reorder Status')
+        public String reorderStatus;
+        @InvocableVariable(label='Status Changed')
+        public Boolean statusChanged;
+        @InvocableVariable(label='Newly Reorder Needed')
+        public Boolean newlyReorderNeeded;
+        @InvocableVariable(label='Notify User Id')
+        public String notifyUserId;
+        @InvocableVariable(label='Message')
+        public String message;
+    }
+
+    // Only Reorder_Status__c and Last_Reorder_Run__c are written, and only when the status changes,
+    // so the calling record-triggered flow (which listens to stock fields) is not re-entered.
+    @InvocableMethod(
+        label='Evaluate Inventory Reorder Status'
+        description='Authoritative reorder classification. Updates Reorder_Status__c when it changed and reports whether a reorder alert is needed.'
+    )
+    public static List<ReorderEvaluationResult> evaluateReorderFromFlow(List<ReorderEvaluationRequest> requests) {
+        Set<Id> ids = new Set<Id>();
+        for (ReorderEvaluationRequest r : requests) {
+            if (r.inventoryId != null) ids.add(r.inventoryId);
+        }
+        Map<Id, Inventory__c> records = new Map<Id, Inventory__c>([
+            SELECT Id, On_Hand__c, Reserved__c, Reorder_Point__c, Reorder_Status__c, Warehouse__r.Manager__c
+            FROM Inventory__c WHERE Id IN :ids WITH USER_MODE
+        ]);
+
+        List<Inventory__c> toUpdate = new List<Inventory__c>();
+        Map<Id, ReorderEvaluationResult> resultById = new Map<Id, ReorderEvaluationResult>();
+        for (Inventory__c inv : records.values()) {
+            String newStatus = classifyReorderStatus(inv.On_Hand__c, inv.Reserved__c, inv.Reorder_Point__c);
+            ReorderEvaluationResult res = new ReorderEvaluationResult();
+            res.inventoryId = inv.Id;
+            res.reorderStatus = newStatus;
+            res.statusChanged = newStatus != inv.Reorder_Status__c;
+            res.newlyReorderNeeded = res.statusChanged && newStatus == 'Reorder Needed';
+            if (res.newlyReorderNeeded && inv.Warehouse__r != null && inv.Warehouse__r.Manager__c != null) {
+                res.notifyUserId = String.valueOf(inv.Warehouse__r.Manager__c);
+            }
+            res.message = 'Reorder status is ' + newStatus + '.';
+            resultById.put(inv.Id, res);
+            if (res.statusChanged) {
+                toUpdate.add(new Inventory__c(Id = inv.Id, Reorder_Status__c = newStatus, Last_Reorder_Run__c = Datetime.now()));
+            }
+        }
+
+        if (!toUpdate.isEmpty()) {
+            Database.SaveResult[] saveResults = Database.update(toUpdate, false);
+            for (Integer i = 0; i < saveResults.size(); i++) {
+                if (!saveResults[i].isSuccess()) {
+                    ReorderEvaluationResult res = resultById.get(toUpdate[i].Id);
+                    res.statusChanged = false;
+                    res.newlyReorderNeeded = false;
+                    res.notifyUserId = null;
+                    res.message = 'Reorder status update failed: ' + saveResults[i].getErrors()[0].getMessage();
+                }
+            }
+        }
+
+        List<ReorderEvaluationResult> output = new List<ReorderEvaluationResult>();
+        for (ReorderEvaluationRequest r : requests) {
+            ReorderEvaluationResult res = resultById.get(r.inventoryId);
+            if (res == null) {
+                res = new ReorderEvaluationResult();
+                res.inventoryId = r.inventoryId;
+                res.statusChanged = false;
+                res.newlyReorderNeeded = false;
+                res.message = 'Inventory record not found or not accessible.';
+            }
+            output.add(res);
+        }
+        return output;
+    }
+
     public class InventoryWrapper {
         @AuraEnabled public Id inventoryId { get; set; }
         @AuraEnabled public Id productId { get; set; }
@@ -40,14 +138,7 @@ public with sharing class InventoryService {
             Decimal reorderPt   = item.Reorder_Point__c == null ? 0 : item.Reorder_Point__c;
             Decimal available   = onHand - reserved;
 
-            String status;
-            if (available <= reorderPt) {
-                status = 'Reorder Needed';
-            } else if (reorderPt > 0 && available <= reorderPt * 1.2) {
-                status = 'At Risk';
-            } else {
-                status = 'Healthy';
-            }
+            String status = classifyReorderStatus(onHand, reserved, reorderPt);
 
             if (reorderStatusFilter != null &&
                 reorderStatusFilter != 'All' &&
@@ -103,19 +194,7 @@ public with sharing class InventoryService {
 
         List<Inventory__c> toUpdate = new List<Inventory__c>();
         for (Inventory__c inv : records) {
-            Decimal onHand    = inv.On_Hand__c == null       ? 0 : inv.On_Hand__c;
-            Decimal reserved  = inv.Reserved__c == null      ? 0 : inv.Reserved__c;
-            Decimal reorderPt = inv.Reorder_Point__c == null ? 0 : inv.Reorder_Point__c;
-            Decimal available = onHand - reserved;
-
-            String newStatus;
-            if (available <= reorderPt) {
-                newStatus = 'Reorder Needed';
-            } else if (reorderPt > 0 && available <= reorderPt * 1.2) {
-                newStatus = 'At Risk';
-            } else {
-                newStatus = 'Healthy';
-            }
+            String newStatus = classifyReorderStatus(inv.On_Hand__c, inv.Reserved__c, inv.Reorder_Point__c);
 
             toUpdate.add(new Inventory__c(
                 Id = inv.Id,
@@ -137,7 +216,14 @@ public with sharing class InventoryService {
             update new Inventory__c(Id = inventoryId, Reorder_Status__c = status);
             return true;
         } catch (Exception e) {
-            throw new AuraHandledException('Error updating reorder status: ' + e.getMessage());
+            throw auraError('Error updating reorder status: ' + e.getMessage());
         }
+    }
+
+    // AuraHandledException hides its message from callers unless setMessage is used.
+    private static AuraHandledException auraError(String message) {
+        AuraHandledException ex = new AuraHandledException(message);
+        ex.setMessage(message);
+        return ex;
     }
 }

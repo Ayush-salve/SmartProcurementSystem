@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Requisition_Set_Under_Review</fullName>
+        <description>Marks the requisition as Under Review while approval is pending.</description>
+        <field>Status__c</field>
+        <literalValue>Under Review</literalValue>
+        <name>Requisition Set Under Review</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Requisition_Set_Approved</fullName>
+        <description>Marks the requisition as Approved.</description>
+        <field>Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Requisition Set Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Requisition_Set_Approved_At</fullName>
+        <description>Stamps the approval date and time.</description>
+        <field>Approved_At__c</field>
+        <formula>NOW()</formula>
+        <name>Requisition Set Approved At</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Requisition_Set_Approved_Total</fullName>
+        <description>Copies the estimated total to the approved total.</description>
+        <field>Approved_Total__c</field>
+        <formula>Estimated_Total__c</formula>
+        <name>Requisition Set Approved Total</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Requisition_Set_Rejected</fullName>
+        <description>Marks the requisition as Rejected.</description>
+        <field>Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Requisition Set Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Requisition_Set_Draft</fullName>
+        <description>Returns a recalled requisition to Draft so it can be edited.</description>
+        <field>Status__c</field>
+        <literalValue>Draft</literalValue>
+        <name>Requisition Set Draft</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+</Workflow>

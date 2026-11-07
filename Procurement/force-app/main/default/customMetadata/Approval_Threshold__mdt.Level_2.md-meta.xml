@@ -18,4 +18,12 @@
         <field>Approval_Level__c</field>
         <value xsi:type="xsd:double">2.0</value>
     </values>
+    <values>
+        <field>Approval_Process__c</field>
+        <value xsi:type="xsd:string">PO_Approval_Level_2</value>
+    </values>
+    <values>
+        <field>Notification_Queue__c</field>
+        <value xsi:type="xsd:string">Procurement_Managers</value>
+    </values>
 </CustomMetadata>
