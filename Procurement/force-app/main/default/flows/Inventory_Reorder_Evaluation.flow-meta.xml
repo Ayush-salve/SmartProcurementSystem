@@ -163,28 +163,8 @@
             <targetReference>Evaluate_Reorder_Status</targetReference>
         </connector>
         <doesRequireRecordChangedToMeetCriteria>false</doesRequireRecordChangedToMeetCriteria>
-        <filterLogic>or</filterLogic>
-        <filters>
-            <field>On_Hand__c</field>
-            <operator>IsChanged</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <filters>
-            <field>Reserved__c</field>
-            <operator>IsChanged</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <filters>
-            <field>Reorder_Point__c</field>
-            <operator>IsChanged</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
+        <filterFormula>OR(ISNEW(), ISCHANGED({!$Record.On_Hand__c}), ISCHANGED({!$Record.Reserved__c}), ISCHANGED({!$Record.Reorder_Point__c}))</filterFormula>
+        <filterLogic>formula_evaluates_to_true</filterLogic>
         <object>Inventory__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>

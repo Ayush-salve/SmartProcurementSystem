@@ -174,21 +174,25 @@ private class GoodsReceiptServiceTest {
 
     @IsTest
     static void testInvalidQuantitiesAreRejectedWithoutChanges() {
-        Goods_Receipt__c gr = createReceipt(10, 8, 2, null);
-        GoodsReceiptService.PostReceiptResult result = callInvocable(gr.Id);
-        System.assertEquals(false, result.isSuccess);
-        System.assert(result.message.contains('rejection reason'), result.message);
+        try {
+            createReceipt(10, 8, 2, null);
+            System.assert(false, 'GoodsReceiptLineTrigger must reject a rejected quantity without a reason');
+        } catch (DmlException e) {
+            System.assert(e.getMessage().contains('rejection reason'), e.getMessage());
+        }
         System.assertEquals(0, [SELECT On_Hand__c FROM Inventory__c LIMIT 1].On_Hand__c);
         System.assertEquals(0, [SELECT COUNT() FROM Inventory_Transaction__c]);
     }
 
     @IsTest
     static void testAcceptedAboveOutstandingIsRejected() {
-        Goods_Receipt__c gr = createReceipt(60, 60, 0, null);
-        GoodsReceiptService.PostReceiptResult result = callInvocable(gr.Id);
-        System.assertEquals(false, result.isSuccess);
-        System.assert(result.message.contains('exceeds the outstanding quantity'), result.message);
-        System.assertEquals('Inspecting', [SELECT Status__c FROM Goods_Receipt__c WHERE Id = :gr.Id].Status__c);
+        try {
+            createReceipt(60, 60, 0, null);
+            System.assert(false, 'GoodsReceiptLineTrigger must reject quantities above the outstanding order quantity');
+        } catch (DmlException e) {
+            System.assert(e.getMessage().contains('exceeds the outstanding quantity'), e.getMessage());
+        }
+        System.assertEquals(0, [SELECT COUNT() FROM Inventory_Transaction__c]);
     }
 
     @IsTest

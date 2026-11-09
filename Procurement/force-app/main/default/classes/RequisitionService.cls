@@ -66,12 +66,17 @@ public with sharing class RequisitionService {
 
     // Returns an error message, or null when valid. Populates line count and total on the result.
     private static String validateRequisition(Purchase_Requisition__c req, SubmissionResult res) {
-        List<Requisition_Line__c> lines = req.Requisition_Lines__r;
+        return validateSubmissionData(req.Required_By__c, req.Requisition_Lines__r, res);
+    }
+
+    // Single implementation of the submission rules, shared by the validation invocable (used by the
+    // Requisition_Submission flow) and by RequisitionTrigger.
+    private static String validateSubmissionData(Date requiredBy, List<Requisition_Line__c> lines, SubmissionResult res) {
         res.lineCount = lines.size();
         if (lines.isEmpty()) {
             return 'Add at least one requisition line before submitting.';
         }
-        if (req.Required_By__c != null && req.Required_By__c < Date.today()) {
+        if (requiredBy != null && requiredBy < Date.today()) {
             return 'Required By date cannot be in the past.';
         }
         Decimal total = 0;
@@ -89,6 +94,53 @@ public with sharing class RequisitionService {
         }
         res.estimatedTotal = total;
         return null;
+    }
+
+    private static final Map<String, Set<String>> STATUS_TRANSITIONS = new Map<String, Set<String>>{
+        'Draft' => new Set<String>{'Submitted', 'Cancelled'},
+        'Submitted' => new Set<String>{'Under Review', 'Approved', 'Rejected', 'Draft', 'Cancelled'},
+        'Under Review' => new Set<String>{'Approved', 'Rejected', 'Draft', 'Cancelled'},
+        'Approved' => new Set<String>{'Partially Ordered', 'Ordered', 'Cancelled'},
+        'Partially Ordered' => new Set<String>{'Ordered', 'Cancelled'},
+        'Rejected' => new Set<String>{'Draft'},
+        'Ordered' => new Set<String>(),
+        'Cancelled' => new Set<String>()
+    };
+
+    public static Boolean isValidTransition(String fromStatus, String toStatus) {
+        String origin = String.isBlank(fromStatus) ? 'Draft' : fromStatus;
+        Set<String> allowed = STATUS_TRANSITIONS.get(origin);
+        return allowed != null && allowed.contains(toStatus);
+    }
+
+    // Used by RequisitionTrigger (before update): rejects status jumps and applies the submission rules
+    // when a requisition moves to Submitted.
+    public static void enforceTransitionsAndSubmissionRules(List<Purchase_Requisition__c> newList, Map<Id, Purchase_Requisition__c> oldMap) {
+        List<Purchase_Requisition__c> submitting = new List<Purchase_Requisition__c>();
+        for (Purchase_Requisition__c req : newList) {
+            Purchase_Requisition__c old = oldMap.get(req.Id);
+            if (old == null || req.Status__c == old.Status__c) continue;
+            if (!isValidTransition(old.Status__c, req.Status__c)) {
+                req.addError('A requisition cannot move from ' + old.Status__c + ' to ' + req.Status__c + '.');
+                continue;
+            }
+            if (req.Status__c == 'Submitted') submitting.add(req);
+        }
+        if (submitting.isEmpty()) return;
+
+        Map<Id, List<Requisition_Line__c>> linesByRequisition = new Map<Id, List<Requisition_Line__c>>();
+        for (Requisition_Line__c line : [
+            SELECT Requisition__c, Product__c, Requested_Qty__c, Estimated_Unit_Price__c
+            FROM Requisition_Line__c WHERE Requisition__c IN :new Map<Id, Purchase_Requisition__c>(submitting).keySet()
+        ]) {
+            if (!linesByRequisition.containsKey(line.Requisition__c)) linesByRequisition.put(line.Requisition__c, new List<Requisition_Line__c>());
+            linesByRequisition.get(line.Requisition__c).add(line);
+        }
+        for (Purchase_Requisition__c req : submitting) {
+            List<Requisition_Line__c> lines = linesByRequisition.containsKey(req.Id) ? linesByRequisition.get(req.Id) : new List<Requisition_Line__c>();
+            String error = validateSubmissionData(req.Required_By__c, lines, new SubmissionResult());
+            if (error != null) req.addError(error);
+        }
     }
 
     @AuraEnabled(cacheable=true)

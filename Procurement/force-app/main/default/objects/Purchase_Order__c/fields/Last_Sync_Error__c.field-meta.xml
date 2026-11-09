@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Sync_Error__c</fullName>
+    <description>Most recent external dispatch failure message (no credentials or payloads). Cleared when a dispatch succeeds or is re-requested.</description>
+    <externalId>false</externalId>
+    <label>Last Sync Error</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

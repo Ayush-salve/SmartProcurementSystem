@@ -8,6 +8,9 @@ public with sharing class GoodsReceiptService {
 
     @TestVisible private static Boolean simulateFailureAfterStockUpdate = false;
 
+    // Set only while this service marks a receipt Posted, so GoodsReceiptTrigger can reject manual status edits.
+    public static Boolean postingInProgress = false;
+
     // ---------------------------------------------------------------- Flow entry point
 
     public class PostReceiptInput {
@@ -149,78 +152,50 @@ public with sharing class GoodsReceiptService {
             for (Goods_Receipt_Line__c grl : receiptLines) {
                 txKeys.add(receiptId + '-' + grl.Id);
             }
-            if (![SELECT Id FROM Inventory_Transaction__c WHERE Transaction_Key__c IN :txKeys LIMIT 1].isEmpty()) {
+            if (!InventoryLedgerService.findExistingKeys(txKeys).isEmpty()) {
                 throw new GoodsReceiptException('This receipt has already been posted.');
             }
 
-            Set<Id> productIds = new Set<Id>();
-            for (Purchase_Order_Line__c pol : polMap.values()) {
-                if (pol.Product__c != null) productIds.add(pol.Product__c);
-            }
-            Map<Id, Inventory__c> invByProduct = new Map<Id, Inventory__c>();
-            for (Inventory__c inv : [
-                SELECT Id, Product__c, On_Hand__c, On_Order__c
-                FROM Inventory__c WHERE Product__c IN :productIds AND Warehouse__c = :warehouseId
-                FOR UPDATE
-            ]) {
-                invByProduct.put(inv.Product__c, inv);
-            }
-
-            Map<Id, Decimal> runningOnHand = new Map<Id, Decimal>();
-            List<Inventory_Transaction__c> txToInsert = new List<Inventory_Transaction__c>();
-            Map<Id, Purchase_Order_Line__c> polToUpdate = new Map<Id, Purchase_Order_Line__c>();
+            List<InventoryLedgerService.LedgerEntry> ledgerEntries = new List<InventoryLedgerService.LedgerEntry>();
             Decimal unitsAccepted = 0;
-
             for (Goods_Receipt_Line__c grl : receiptLines) {
                 Purchase_Order_Line__c pol = polMap.get(grl.Purchase_Order_Line__c);
                 Decimal accepted = nz(grl.Quantity_Accepted__c);
-                Decimal rejected = nz(grl.Quantity_Rejected__c);
                 unitsAccepted += accepted;
 
                 if (accepted > 0) {
-                    Inventory__c inv = invByProduct.get(pol.Product__c);
-                    if (inv == null) {
-                        throw new GoodsReceiptException('No inventory record exists for product ' + pol.Product__r.Name + ' in the receiving warehouse.');
-                    }
-                    Decimal before = runningOnHand.containsKey(inv.Id) ? runningOnHand.get(inv.Id) : nz(inv.On_Hand__c);
-                    Decimal after = before + accepted;
-                    runningOnHand.put(inv.Id, after);
-                    inv.On_Hand__c = after;
-                    if (inv.On_Order__c != null) inv.On_Order__c = Math.max(0, inv.On_Order__c - accepted);
-
-                    txToInsert.add(new Inventory_Transaction__c(
-                        Inventory__c = inv.Id,
-                        Product__c = pol.Product__c,
-                        Warehouse__c = warehouseId,
-                        Transaction_Type__c = 'Receipt',
-                        Quantity_Change__c = accepted,
-                        Quantity_Before__c = before,
-                        Quantity_After__c = after,
-                        Source_Receipt_Line__c = grl.Id,
-                        Source_Order_Line__c = pol.Id,
-                        Transaction_Key__c = receiptId + '-' + grl.Id,
-                        Processed_At__c = Datetime.now(),
-                        Processed_By__c = UserInfo.getUserId()
-                    ));
+                    InventoryLedgerService.LedgerEntry entry = new InventoryLedgerService.LedgerEntry();
+                    entry.productId = pol.Product__c;
+                    entry.warehouseId = warehouseId;
+                    entry.transactionType = 'Receipt';
+                    entry.quantityChange = accepted;
+                    entry.onOrderChange = -accepted;
+                    entry.transactionKey = receiptId + '-' + grl.Id;
+                    entry.sourceReceiptLineId = grl.Id;
+                    entry.sourceOrderLineId = pol.Id;
+                    entry.label = 'product ' + (pol.Product__r != null ? pol.Product__r.Name : String.valueOf(pol.Product__c));
+                    ledgerEntries.add(entry);
                 }
 
                 pol.Quantity_Received__c = nz(pol.Quantity_Received__c) + accepted;
-                pol.Quantity_Rejected__c = nz(pol.Quantity_Rejected__c) + rejected;
+                pol.Quantity_Rejected__c = nz(pol.Quantity_Rejected__c) + nz(grl.Quantity_Rejected__c);
                 pol.Line_Status__c = nz(pol.Quantity_Received__c) >= nz(pol.Quantity_Ordered__c) ? 'Complete'
                     : (pol.Quantity_Received__c > 0 ? 'Partially Received' : pol.Line_Status__c);
-                polToUpdate.put(pol.Id, pol);
             }
 
-            // Derived stock records are system-maintained; the caller was already authorised to post above.
-            if (!runningOnHand.isEmpty()) {
-                List<Inventory__c> invToUpdate = new List<Inventory__c>();
-                for (Inventory__c inv : invByProduct.values()) {
-                    if (runningOnHand.containsKey(inv.Id)) invToUpdate.add(inv);
-                }
-                update invToUpdate;
+            InventoryLedgerService.post(ledgerEntries);
+
+            // Fresh records: updating rows queried WITH USER_MODE fails with "fields being inaccessible".
+            List<Purchase_Order_Line__c> polUpdates = new List<Purchase_Order_Line__c>();
+            for (Purchase_Order_Line__c pol : polMap.values()) {
+                polUpdates.add(new Purchase_Order_Line__c(
+                    Id = pol.Id,
+                    Quantity_Received__c = pol.Quantity_Received__c,
+                    Quantity_Rejected__c = pol.Quantity_Rejected__c,
+                    Line_Status__c = pol.Line_Status__c
+                ));
             }
-            if (!txToInsert.isEmpty()) insert txToInsert;
-            update polToUpdate.values();
+            update polUpdates;
 
             if (simulateFailureAfterStockUpdate && Test.isRunningTest()) {
                 throw new GoodsReceiptException('Simulated failure after stock update.');
@@ -232,7 +207,12 @@ public with sharing class GoodsReceiptService {
             receipt.Posted_At__c = Datetime.now();
             if (receipt.Warehouse__c == null) receipt.Warehouse__c = warehouseId;
             if (receipt.Received_By__c == null) receipt.Received_By__c = UserInfo.getUserId();
-            update receipt;
+            postingInProgress = true;
+            try {
+                update receipt;
+            } finally {
+                postingInProgress = false;
+            }
 
             PostReceiptResult result = new PostReceiptResult();
             result.receiptId = receiptId;
@@ -291,6 +271,88 @@ public with sharing class GoodsReceiptService {
         AuraHandledException ex = new AuraHandledException(message);
         ex.setMessage(message);
         return ex;
+    }
+
+    // ---------------------------------------------------------------- Trigger rules
+
+    private static final Map<String, Set<String>> RECEIPT_TRANSITIONS = new Map<String, Set<String>>{
+        'Draft' => new Set<String>{'Inspecting', 'Rejected', 'Posted'},
+        'Inspecting' => new Set<String>{'Draft', 'Rejected', 'Posted'},
+        'Posted' => new Set<String>(),
+        'Rejected' => new Set<String>()
+    };
+
+    // Used by GoodsReceiptTrigger (before update). A receipt becomes Posted only through postReceiptCore, which
+    // raises postingInProgress; editing the Status or Posted At fields by hand is rejected.
+    public static void enforcePostingRules(List<Goods_Receipt__c> newList, Map<Id, Goods_Receipt__c> oldMap) {
+        for (Goods_Receipt__c gr : newList) {
+            Goods_Receipt__c old = oldMap.get(gr.Id);
+            if (old == null) continue;
+            String oldStatus = String.isBlank(old.Status__c) ? 'Draft' : old.Status__c;
+            String newStatus = String.isBlank(gr.Status__c) ? 'Draft' : gr.Status__c;
+            if (newStatus != oldStatus) {
+                Set<String> allowed = RECEIPT_TRANSITIONS.get(oldStatus);
+                if (allowed == null || !allowed.contains(newStatus)) {
+                    gr.addError('A goods receipt cannot move from ' + oldStatus + ' to ' + newStatus + '.');
+                    continue;
+                }
+                if (newStatus == 'Posted' && !postingInProgress) {
+                    gr.addError('A goods receipt can only be posted through the posting process, which updates stock and the purchase order together.');
+                    continue;
+                }
+            }
+            if (gr.Posted_At__c != old.Posted_At__c && !postingInProgress) {
+                gr.addError('Posted At is maintained by the posting process.');
+            }
+        }
+    }
+
+    // Used by GoodsReceiptLineTrigger (before insert/update): quantities, parent receipt state and the
+    // purchase order line the quantities are received against.
+    public static void validateReceiptLines(List<Goods_Receipt_Line__c> lines) {
+        Set<Id> receiptIds = new Set<Id>();
+        Set<Id> polIds = new Set<Id>();
+        for (Goods_Receipt_Line__c line : lines) {
+            if (line.Goods_Receipt__c != null) receiptIds.add(line.Goods_Receipt__c);
+            if (line.Purchase_Order_Line__c != null) polIds.add(line.Purchase_Order_Line__c);
+        }
+        Map<Id, Goods_Receipt__c> receipts = new Map<Id, Goods_Receipt__c>([
+            SELECT Id, Status__c, Purchase_Order__c FROM Goods_Receipt__c WHERE Id IN :receiptIds
+        ]);
+        Map<Id, Purchase_Order_Line__c> orderLines = new Map<Id, Purchase_Order_Line__c>([
+            SELECT Id, Purchase_Order__c, Quantity_Ordered__c, Quantity_Received__c, Line_Status__c
+            FROM Purchase_Order_Line__c WHERE Id IN :polIds
+        ]);
+
+        Map<Id, Decimal> acceptedInBatch = new Map<Id, Decimal>();
+        for (Goods_Receipt_Line__c line : lines) {
+            String quantityError = validateLineQuantities(line);
+            if (quantityError != null) {
+                line.addError(quantityError);
+                continue;
+            }
+            Goods_Receipt__c receipt = receipts.get(line.Goods_Receipt__c);
+            if (receipt != null && (receipt.Status__c == 'Posted' || receipt.Status__c == 'Rejected')) {
+                line.addError('Lines of a ' + receipt.Status__c.toLowerCase() + ' goods receipt cannot be changed.');
+                continue;
+            }
+            Purchase_Order_Line__c pol = line.Purchase_Order_Line__c == null ? null : orderLines.get(line.Purchase_Order_Line__c);
+            if (pol == null) continue;
+            if (receipt != null && receipt.Purchase_Order__c != null && pol.Purchase_Order__c != receipt.Purchase_Order__c) {
+                line.addError('The purchase order line does not belong to the purchase order of this goods receipt.');
+                continue;
+            }
+            if (pol.Line_Status__c == 'Cancelled') {
+                line.addError('Goods cannot be received against a cancelled purchase order line.');
+                continue;
+            }
+            Decimal outstanding = nz(pol.Quantity_Ordered__c) - nz(pol.Quantity_Received__c);
+            Decimal accepted = nz(acceptedInBatch.get(pol.Id)) + nz(line.Quantity_Accepted__c);
+            acceptedInBatch.put(pol.Id, accepted);
+            if (accepted > outstanding) {
+                line.addError('Accepted quantity (' + accepted + ') exceeds the outstanding quantity (' + outstanding + ') on the purchase order line.');
+            }
+        }
     }
 
     // ---------------------------------------------------------------- LWC / Aura entry points

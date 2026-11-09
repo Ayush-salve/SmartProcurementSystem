@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Configurable business settings for SmartProcurement: supplier scoring weights, scorecard risk thresholds, dispatch retry limits and the optional AI Named Credential. A single record named Default is read by ProcurementConfig.</description>
+    <label>Procurement Setting</label>
+    <pluralLabel>Procurement Settings</pluralLabel>
+    <visibility>Public</visibility>
+    <fields>
+        <fullName>Price_Weight__c</fullName>
+        <description>Relative weight of price when ranking supplier offers and scoring suppliers. Weights are normalised, so they do not need to add up to 100.</description>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Price Weight</label>
+        <precision>5</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Quality_Weight__c</fullName>
+        <description>Relative weight of quality (offer quality rating, or 100 minus the defect rate on scorecards).</description>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Quality Weight</label>
+        <precision>5</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Delivery_Weight__c</fullName>
+        <description>Relative weight of delivery performance (offer delivery rating, or on-time rate on scorecards).</description>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Delivery Weight</label>
+        <precision>5</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Lead_Time_Weight__c</fullName>
+        <description>Relative weight of lead time (shorter quoted lead time on offers, lead-time adherence on scorecards). Zero disables it.</description>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Lead Time Weight</label>
+        <precision>5</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Risk_High_Below__c</fullName>
+        <description>A scorecard with an overall score below this value is rated High risk.</description>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>High Risk Below Score</label>
+        <precision>5</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Risk_Medium_Below__c</fullName>
+        <description>A scorecard with an overall score below this value (and not High) is rated Medium risk.</description>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Medium Risk Below Score</label>
+        <precision>5</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Scorecard_Period_Days__c</fullName>
+        <description>Number of days, ending today, evaluated by SupplierScorecardBatch.</description>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Scorecard Period (Days)</label>
+        <precision>4</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Max_Dispatch_Attempts__c</fullName>
+        <description>Maximum number of external dispatch attempts per purchase order, including the first attempt.</description>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Max Dispatch Attempts</label>
+        <precision>2</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Retry_Delay_Minutes__c</fullName>
+        <description>Delay before the first retry. It doubles on every further retry and is capped at 10 minutes (Queueable delay limit).</description>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Retry Delay (Minutes)</label>
+        <precision>2</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>AI_Named_Credential__c</fullName>
+        <description>Developer name of the Named Credential for the AI service used by ProcurementAIService. Leave blank until an AI integration is configured.</description>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>AI Named Credential</label>
+        <length>80</length>
+        <type>Text</type>
+    </fields>
+</CustomObject>

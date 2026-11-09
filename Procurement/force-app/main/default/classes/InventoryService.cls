@@ -15,6 +15,81 @@ public with sharing class InventoryService {
         return 'Healthy';
     }
 
+    private static final Decimal DEMAND_COVER_FACTOR = 1.5;
+
+    // Units still needed so projected stock (available + on order) reaches the reorder point plus the
+    // demand expected during the supplier lead time. Zero means the item is already covered.
+    public static Decimal suggestedOrderQuantity(Inventory__c inv) {
+        Decimal available = nz(inv.On_Hand__c) - nz(inv.Reserved__c);
+        Decimal demandCover = 0;
+        if (inv.Average_Daily_Demand__c != null && inv.Lead_Time_Days__c != null) {
+            demandCover = inv.Average_Daily_Demand__c * inv.Lead_Time_Days__c * DEMAND_COVER_FACTOR;
+        }
+        Decimal shortfall = nz(inv.Reorder_Point__c) + demandCover - available - nz(inv.On_Order__c);
+        return shortfall > 0 ? shortfall.setScale(0, RoundingMode.CEILING) : 0;
+    }
+
+    // An item is a reorder candidate when it is at or below the reorder point and the open orders do not already cover it.
+    public static Boolean isReorderEligible(Inventory__c inv) {
+        return classifyReorderStatus(inv.On_Hand__c, inv.Reserved__c, inv.Reorder_Point__c) == 'Reorder Needed'
+            && suggestedOrderQuantity(inv) > 0;
+    }
+
+    // Used by InventoryTrigger (before insert/update). Negative values and Reserved > On Hand are already
+    // rejected by validation rules, and Reorder_Status__c is deliberately left to the reorder flow so its
+    // "newly reorder needed" alert still fires.
+    public static void validateAndDeriveStockFields(List<Inventory__c> records, Map<Id, Inventory__c> oldMap) {
+        Boolean isInsert = oldMap == null;
+        List<Inventory__c> locationChanged = new List<Inventory__c>();
+        for (Inventory__c inv : records) {
+            Inventory__c old = isInsert ? null : oldMap.get(inv.Id);
+            if (inv.On_Hand__c == null) inv.On_Hand__c = 0;
+            if (inv.Reserved__c == null) inv.Reserved__c = 0;
+            if (inv.On_Order__c == null) inv.On_Order__c = 0;
+            if (isInsert) {
+                if (inv.Last_Stock_Check__c == null) inv.Last_Stock_Check__c = Date.today();
+            } else if (inv.On_Hand__c != old.On_Hand__c && inv.Last_Stock_Check__c == old.Last_Stock_Check__c) {
+                inv.Last_Stock_Check__c = Date.today();
+            }
+            Boolean locationIsNew = isInsert || inv.Product__c != old.Product__c || inv.Warehouse__c != old.Warehouse__c;
+            if (locationIsNew && inv.Product__c != null && inv.Warehouse__c != null) locationChanged.add(inv);
+        }
+        rejectDuplicateLocations(locationChanged);
+    }
+
+    // One inventory record per product and warehouse: goods receipts and the ledger resolve stock by that pair.
+    private static void rejectDuplicateLocations(List<Inventory__c> candidates) {
+        if (candidates.isEmpty()) return;
+        Map<String, Inventory__c> seen = new Map<String, Inventory__c>();
+        Set<Id> productIds = new Set<Id>();
+        Set<Id> warehouseIds = new Set<Id>();
+        Set<Id> ownIds = new Set<Id>();
+        for (Inventory__c inv : candidates) {
+            String key = inv.Product__c + '|' + inv.Warehouse__c;
+            if (seen.containsKey(key)) {
+                inv.addError('Another inventory record in this request already tracks this product in this warehouse.');
+                continue;
+            }
+            seen.put(key, inv);
+            productIds.add(inv.Product__c);
+            warehouseIds.add(inv.Warehouse__c);
+            if (inv.Id != null) ownIds.add(inv.Id);
+        }
+        for (Inventory__c existing : [
+            SELECT Id, Product__c, Warehouse__c FROM Inventory__c
+            WHERE Product__c IN :productIds AND Warehouse__c IN :warehouseIds AND Id NOT IN :ownIds
+        ]) {
+            Inventory__c clash = seen.get(existing.Product__c + '|' + existing.Warehouse__c);
+            if (clash != null) {
+                clash.addError('An inventory record already exists for this product in this warehouse.');
+            }
+        }
+    }
+
+    private static Decimal nz(Decimal value) {
+        return value == null ? 0 : value;
+    }
+
     public class ReorderEvaluationRequest {
         @InvocableVariable(label='Inventory Id' required=true)
         public Id inventoryId;

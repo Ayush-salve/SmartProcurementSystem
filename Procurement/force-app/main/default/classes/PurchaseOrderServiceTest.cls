@@ -40,11 +40,10 @@ private class PurchaseOrderServiceTest {
         return po;
     }
 
-    private static PurchaseOrderService.OrderResult run(Id poId, String operation, String priorStatus) {
+    private static PurchaseOrderService.OrderResult run(Id poId, String operation) {
         PurchaseOrderService.OrderRequest r = new PurchaseOrderService.OrderRequest();
         r.purchaseOrderId = poId;
         r.operation = operation;
-        r.priorStatus = priorStatus;
         return PurchaseOrderService.processFromFlow(new List<PurchaseOrderService.OrderRequest>{ r })[0];
     }
 
@@ -54,7 +53,7 @@ private class PurchaseOrderServiceTest {
     static void testPrepareApprovalRecalculatesSubtotalAndTotal() {
         Purchase_Order__c po = createOrder('Draft', 10, 25);
         update new Purchase_Order__c(Id = po.Id, Tax_Amount__c = 5, Shipping_Amount__c = 10);
-        PurchaseOrderService.OrderResult res = run(po.Id, PurchaseOrderService.OP_PREPARE_APPROVAL, null);
+        PurchaseOrderService.OrderResult res = run(po.Id, PurchaseOrderService.OP_PREPARE_APPROVAL);
         System.assertEquals(true, res.isSuccess, res.message);
         System.assertEquals(265, res.totalAmount);
         System.assertEquals(250, [SELECT Subtotal__c FROM Purchase_Order__c WHERE Id = :po.Id].Subtotal__c);
@@ -63,11 +62,11 @@ private class PurchaseOrderServiceTest {
     @IsTest
     static void testPrepareApprovalRejectsOrdersWithoutLinesOrSupplier() {
         Purchase_Order__c noLines = createOrder('Draft', null, null);
-        System.assertEquals(false, run(noLines.Id, PurchaseOrderService.OP_PREPARE_APPROVAL, null).isSuccess);
+        System.assertEquals(false, run(noLines.Id, PurchaseOrderService.OP_PREPARE_APPROVAL).isSuccess);
 
         Purchase_Order__c noSupplier = createOrder('Draft', 1, 1);
         update new Purchase_Order__c(Id = noSupplier.Id, Supplier__c = null);
-        PurchaseOrderService.OrderResult res = run(noSupplier.Id, PurchaseOrderService.OP_PREPARE_APPROVAL, null);
+        PurchaseOrderService.OrderResult res = run(noSupplier.Id, PurchaseOrderService.OP_PREPARE_APPROVAL);
         System.assertEquals(false, res.isSuccess);
         System.assert(res.message.contains('supplier'));
     }
@@ -75,16 +74,16 @@ private class PurchaseOrderServiceTest {
     @IsTest
     static void testDispatchValidationOnlyAllowsApprovedOrders() {
         Purchase_Order__c draft = createOrder('Draft', 1, 1);
-        PurchaseOrderService.OrderResult res = run(draft.Id, PurchaseOrderService.OP_DISPATCH, 'Draft');
-        System.assertEquals(false, res.isSuccess);
-        System.assert(res.message.contains('Sent'), res.message);
-
-        Purchase_Order__c sentNotApproved = createOrder('Sent', 1, 1);
-        res = run(sentNotApproved.Id, PurchaseOrderService.OP_DISPATCH, 'Draft');
+        PurchaseOrderService.OrderResult res = run(draft.Id, PurchaseOrderService.OP_DISPATCH);
         System.assertEquals(false, res.isSuccess);
         System.assert(res.message.contains('approved'), res.message);
 
-        System.assertEquals(false, run(draft.Id, 'UNKNOWN', null).isSuccess);
+        Purchase_Order__c approvedNotRequested = createOrder('Approved', 1, 1);
+        res = run(approvedNotRequested.Id, PurchaseOrderService.OP_DISPATCH);
+        System.assertEquals(false, res.isSuccess);
+        System.assert(res.message.contains('not been requested'), res.message);
+
+        System.assertEquals(false, run(draft.Id, 'UNKNOWN').isSuccess);
     }
 
     @IsTest
@@ -98,8 +97,37 @@ private class PurchaseOrderServiceTest {
         }
         PurchaseOrderService.PurchaseOrderWrapper w = PurchaseOrderService.getPurchaseOrderWithLines(po.Id);
         System.assertEquals(true, w.canDispatch);
+
+        Test.setMock(HttpCalloutMock.class, new DispatchMock(201, '{"orderId":"EXT-2001"}'));
+        Test.startTest();
         PurchaseOrderService.dispatchPurchaseOrder(po.Id);
-        System.assertEquals('Sent', [SELECT Status__c FROM Purchase_Order__c WHERE Id = :po.Id].Status__c);
+        Test.stopTest();
+        Purchase_Order__c result = [SELECT Status__c, External_Order_Id__c FROM Purchase_Order__c WHERE Id = :po.Id];
+        System.assertEquals('Sent', result.Status__c, 'Sent only after supplier confirmation');
+        System.assertEquals('EXT-2001', result.External_Order_Id__c);
+    }
+
+    @IsTest
+    static void testDispatchRequestRejectedForNonApprovedOrder() {
+        Purchase_Order__c draft = createOrder('Draft', 1, 1);
+        try {
+            PurchaseOrderService.dispatchPurchaseOrder(draft.Id);
+            System.assert(false, 'Draft orders cannot be dispatched');
+        } catch (AuraHandledException e) {
+            System.assert(e.getMessage().contains('Approved'), e.getMessage());
+        }
+    }
+
+    @IsTest
+    static void testOrderCannotBeMarkedSentWithoutSupplierConfirmation() {
+        Purchase_Order__c po = createOrder('Approved', 1, 10);
+        try {
+            update new Purchase_Order__c(Id = po.Id, Status__c = 'Sent');
+            System.assert(false, 'Sent requires supplier confirmation');
+        } catch (DmlException e) {
+            System.assert(e.getMessage().contains('supplier confirms'), e.getMessage());
+        }
+        System.assertEquals('Approved', [SELECT Status__c FROM Purchase_Order__c WHERE Id = :po.Id].Status__c);
     }
 
     // ------------------------------------------------------------ Dispatch flow + queueable
@@ -109,7 +137,7 @@ private class PurchaseOrderServiceTest {
         Purchase_Order__c po = createOrder('Approved', 4, 100);
         Test.setMock(HttpCalloutMock.class, new DispatchMock(201, '{"orderId":"EXT-1001"}'));
         Test.startTest();
-        update new Purchase_Order__c(Id = po.Id, Status__c = 'Sent');
+        update new Purchase_Order__c(Id = po.Id, Last_Sync_Status__c = 'Pending');
         Test.stopTest();
 
         Purchase_Order__c result = [
@@ -124,11 +152,31 @@ private class PurchaseOrderServiceTest {
     }
 
     @IsTest
-    static void testDispatchFailureReturnsOrderToApprovedAndCreatesTask() {
+    static void testRetryableFailureStaysPendingAndSchedulesRetry() {
         Purchase_Order__c po = createOrder('Approved', 4, 100);
-        Test.setMock(HttpCalloutMock.class, new DispatchMock(500, 'boom'));
+        Test.setMock(HttpCalloutMock.class, new DispatchMock(503, 'unavailable'));
         Test.startTest();
-        update new Purchase_Order__c(Id = po.Id, Status__c = 'Sent');
+        update new Purchase_Order__c(Id = po.Id, Last_Sync_Status__c = 'Pending');
+        Test.stopTest();
+
+        Purchase_Order__c result = [
+            SELECT Status__c, Last_Sync_Status__c, External_Order_Id__c, Dispatch_Attempts__c FROM Purchase_Order__c WHERE Id = :po.Id
+        ];
+        System.assertEquals('Approved', result.Status__c);
+        System.assertEquals('Pending', result.Last_Sync_Status__c);
+        System.assertEquals(null, result.External_Order_Id__c);
+        System.assertEquals(1, result.Dispatch_Attempts__c);
+        System.assertEquals(1, IntegrationRetryQueueable.scheduledInTest.size(), 'One retry is scheduled');
+        System.assertEquals(2, IntegrationRetryQueueable.scheduledInTest[0].nextAttempt);
+        System.assertEquals(0, [SELECT COUNT() FROM Task WHERE WhatId = :po.Id], 'No task until retries are exhausted');
+    }
+
+    @IsTest
+    static void testDispatchFailureKeepsOrderApprovedAndCreatesTask() {
+        Purchase_Order__c po = createOrder('Approved', 4, 100);
+        Test.setMock(HttpCalloutMock.class, new DispatchMock(400, 'rejected'));
+        Test.startTest();
+        update new Purchase_Order__c(Id = po.Id, Last_Sync_Status__c = 'Pending');
         Test.stopTest();
 
         Purchase_Order__c result = [
@@ -142,10 +190,10 @@ private class PurchaseOrderServiceTest {
     }
 
     @IsTest
-    static void testDispatchFlowReturnsOrderWithoutLinesToApproved() {
+    static void testDispatchFlowMarksOrderWithoutLinesFailed() {
         Purchase_Order__c po = createOrder('Approved', null, null);
         Test.startTest();
-        update new Purchase_Order__c(Id = po.Id, Status__c = 'Sent');
+        update new Purchase_Order__c(Id = po.Id, Last_Sync_Status__c = 'Pending');
         Test.stopTest();
         Purchase_Order__c result = [SELECT Status__c, Last_Sync_Status__c FROM Purchase_Order__c WHERE Id = :po.Id];
         System.assertEquals('Approved', result.Status__c);
@@ -159,7 +207,14 @@ private class PurchaseOrderServiceTest {
         update new Purchase_Order__c(Id = po.Id, External_Order_Id__c = 'EXT-OLD');
         Test.setMock(HttpCalloutMock.class, new DispatchMock(201, '{"orderId":"EXT-NEW"}'));
         Test.startTest();
-        update new Purchase_Order__c(Id = po.Id, Status__c = 'Sent');
+        try {
+            update new Purchase_Order__c(Id = po.Id, Last_Sync_Status__c = 'Pending');
+            System.assert(false, 'A dispatched order cannot be dispatched again');
+        } catch (DmlException e) {
+            System.assert(e.getMessage().contains('not been dispatched'), e.getMessage());
+        }
+        Map<Id, String> errors = PurchaseOrderService.requestDispatch(new Set<Id>{ po.Id });
+        System.assert(errors.get(po.Id).contains('already been dispatched'), errors.get(po.Id));
         Test.stopTest();
         System.assertEquals('EXT-OLD', [SELECT External_Order_Id__c FROM Purchase_Order__c WHERE Id = :po.Id].External_Order_Id__c);
     }

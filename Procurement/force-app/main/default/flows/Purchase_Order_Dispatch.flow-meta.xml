@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>68.0</apiVersion>
-    <description>After-save flow that dispatches an approved purchase order to the supplier. Runs when Status becomes Sent and the order has not already been dispatched. PurchaseOrderService validates approval, supplier and lines and queues PurchaseOrderDispatchJob, which performs the callout asynchronously through the Supplier_PO_API named credential and records success or failure. If validation fails here the order is returned to Approved and the buyer is notified.</description>
+    <description>After-save flow that dispatches an approved purchase order to the supplier. Runs when a dispatch is requested (Last_Sync_Status = Pending) on an Approved order that has not been dispatched. PurchaseOrderService validates approval, supplier and lines and queues ProcurementDispatchQueueable, which performs the callout asynchronously through the named credential and marks the order Sent only after the supplier confirms it. If validation fails here the dispatch is marked Failed, the order stays Approved and the buyer is notified.</description>
     <environments>Default</environments>
     <interviewLabel>Purchase Order Dispatch {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Purchase Order Dispatch</label>
@@ -49,12 +49,6 @@
             <name>operation</name>
             <value>
                 <stringValue>DISPATCH</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>priorStatus</name>
-            <value>
-                <elementReference>$Record__Prior.Status__c</elementReference>
             </value>
         </inputParameters>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -121,12 +115,17 @@
     <formulas>
         <name>frmFailureMessage</name>
         <dataType>String</dataType>
-        <expression>"Purchase order " &amp; {!$Record.Name} &amp; " could not be dispatched: " &amp; {!varFailureMessage} &amp; " It was returned to Approved."</expression>
+        <expression>"Purchase order " &amp; {!$Record.Name} &amp; " could not be dispatched: " &amp; {!varFailureMessage} &amp; " It is still Approved."</expression>
+    </formulas>
+    <formulas>
+        <name>frmStoredError</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!varFailureMessage}, 255)</expression>
     </formulas>
     <recordUpdates>
         <name>Return_To_Approved</name>
-        <description>Sent -&gt; Approved is allowed by Sent_Requires_Approved_Status and does not re-trigger this flow.</description>
-        <label>Return To Approved</label>
+        <description>Marks the requested dispatch as Failed and records the reason. The order stays Approved and the flow criteria (Pending) are no longer met, so it does not re-trigger.</description>
+        <label>Mark Dispatch Failed</label>
         <locationX>176</locationX>
         <locationY>300</locationY>
         <connector>
@@ -144,19 +143,16 @@
             </value>
         </filters>
         <inputAssignments>
-            <field>Status__c</field>
-            <value>
-                <stringValue>Approved</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>Last_Sync_Status__c</field>
             <value>
                 <stringValue>Failed</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>Sent_At__c</field>
+            <field>Last_Sync_Error__c</field>
+            <value>
+                <elementReference>frmStoredError</elementReference>
+            </value>
         </inputAssignments>
         <object>Purchase_Order__c</object>
     </recordUpdates>
@@ -219,10 +215,17 @@
         <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
         <filterLogic>and</filterLogic>
         <filters>
+            <field>Last_Sync_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Pending</stringValue>
+            </value>
+        </filters>
+        <filters>
             <field>Status__c</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>Sent</stringValue>
+                <stringValue>Approved</stringValue>
             </value>
         </filters>
         <filters>
